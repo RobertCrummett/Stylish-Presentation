@@ -1,0 +1,8 @@
+# Remove all of the build files from LuaLaTex...
+*.aux
+*.log
+*.nav
+*.out
+*.pdf
+*.snm
+*.toc
