@@ -1,4 +1,6 @@
 \documentclass{beamer}
+\usepackage[absolute,overlay]{textpos}
+\usepackage{graphicx}
 
 %-----------------------------------------
 % CGEM Colors
@@ -29,12 +31,26 @@
 %------------------------------------------
 % Presentation
 \begin{document}
+  %
+  % Title slide
   \begin{frame}
+    % 
+    % Mines logo
+    \begin{figure}
+      \begin{textblock*}{2.5cm}(0.05\paperwidth,0.3\paperheight)
+        \includegraphics[width=2.5cm]{Figure/mines-2018}
+      \end{textblock*}
+    \end{figure}
+    %
+    % CGEM logo
+    \begin{figure}
+      \begin{textblock*}{3cm}(0.7\paperwidth,0.3\paperheight)
+        \includegraphics[width=3cm]{Figure/cgem-logo}
+      \end{textblock*}
+    \end{figure}
+
+
     \titlepage
   \end{frame}
-
-  \begin{frame}
-    Test
-  \end{frame}
-
+  %
 \end{document}
