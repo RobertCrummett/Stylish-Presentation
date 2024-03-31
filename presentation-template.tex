@@ -1,27 +1,30 @@
+% CGEM Presentation
 \documentclass{beamer}
-\usepackage[absolute,overlay]{textpos}
+\usepackage{fontspec}
 \usepackage{graphicx}
+\usepackage[absolute,overlay]{textpos}
+\usepackage{xcolor}
+
+\graphicspath{{./Figure}}
 
 %-----------------------------------------
-% CGEM Colors
+% CGEM Settings
 \definecolor{cgemblue}{HTML}{90C5FB}
+\setmainfont{Arial}[Extension = .ttf]
+
+\newcommand{\titlefont}{\fontsize{30}{30}\selectfont \color{white}}
+\newcommand{\authorfont}{\fontsize{12}{24}\selectfont \color{cgemblue}}
+\newcommand{\institutefont}{\vspace{-1mm} \fontsize{11}{12}\selectfont \color{cgemblue} \textit}
+\newcommand{\datefont}{\fontsize{10}{12}\selectfont \color{white} \textit}
 
 %------------------------------------------
 % Title page
-\title{{\color{cgemblue}First slide}}
-\author{{\color{white}R. Nate Crummett}}
-\institute{
-  {\color{white}
-    Center of Gravity, Electric and Magentic Studies \\
-    Department of Geophysics \\
-    Colorado School of Mines
-  }
-}
-\date{
-  {\color{cgemblue}
-    \today
-  }
-}
+%\title{\titlefont{Nifty Presentation Title}}
+%\author{\authorfont{R. Nate Crummett* \and Yaoguo Li}}
+%\institute{\institutefont{
+%  Center of Gravity, Electric \& Magentic Studies (CGEM)\\ 
+%  Department of Geophysics --- Colorado School of Mines}}
+%\date{\datefont{\today}}
 
 %------------------------------------------
 % Background color
@@ -37,20 +40,26 @@
     % 
     % Mines logo
     \begin{figure}
-      \begin{textblock*}{2.5cm}(0.05\paperwidth,0.3\paperheight)
-        \includegraphics[width=2.5cm]{Figure/mines-2018}
+      \begin{textblock*}{2cm}(0.075\paperwidth,0.4\paperheight)
+        \includegraphics[width=2cm]{mines-2018}
       \end{textblock*}
     \end{figure}
     %
     % CGEM logo
     \begin{figure}
-      \begin{textblock*}{3cm}(0.7\paperwidth,0.3\paperheight)
-        \includegraphics[width=3cm]{Figure/cgem-logo}
+      \begin{textblock*}{2.5cm}(0.75\paperwidth,0.4\paperheight)
+        \includegraphics[width=2.5cm]{cgem-logo}
       \end{textblock*}
     \end{figure}
-
-
-    \titlepage
+    %
+    % Title
+    \begin{center}
+      \titlefont{Overly Flowery Presentation Title} \\[1cm]
+      \authorfont{R. Nate Crummett} \\
+      \authorfont{Yaoguo Li} \\[1cm]
+      \datefont{\today}
+    \end{center}
+    %
   \end{frame}
   %
 \end{document}
