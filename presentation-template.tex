@@ -1,6 +1,8 @@
 % CGEM Presentation
-\documentclass{beamer}
+\documentclass[aspectratio=169]{beamer}
+\usepackage{float}
 \usepackage{fontspec}
+\usepackage{enumitem}
 \usepackage{graphicx}
 \usepackage[absolute,overlay]{textpos}
 \usepackage{xcolor}
@@ -10,56 +12,115 @@
 %-----------------------------------------
 % CGEM Settings
 \definecolor{cgemblue}{HTML}{90C5FB}
-\setmainfont{Arial}[Extension = .ttf]
-
-\newcommand{\titlefont}{\fontsize{30}{30}\selectfont \color{white}}
-\newcommand{\authorfont}{\fontsize{12}{24}\selectfont \color{cgemblue}}
-\newcommand{\institutefont}{\vspace{-1mm} \fontsize{11}{12}\selectfont \color{cgemblue} \textit}
-\newcommand{\datefont}{\fontsize{10}{12}\selectfont \color{white} \textit}
+\setsansfont{Arial}
 
 %------------------------------------------
-% Title page
-%\title{\titlefont{Nifty Presentation Title}}
-%\author{\authorfont{R. Nate Crummett* \and Yaoguo Li}}
-%\institute{\institutefont{
-%  Center of Gravity, Electric \& Magentic Studies (CGEM)\\ 
-%  Department of Geophysics --- Colorado School of Mines}}
-%\date{\datefont{\today}}
+%% Title page
+% Slide title
+\newcommand{\tslideTitle}{
+  {\fontsize{25}{60}\selectfont 
+    Don't Read Title to Your Audience
+  }
+}
+% Slide authors
+\newcommand{\tslideAuthors}{
+  {\fontsize{20}{22}\selectfont {\color{cgemblue}
+    Corresponding Author*\\[3mm]
+    Author}
+  }
+}
+% Slide Affiliations
+\newcommand{\tslideCGEM}{
+  \textit{\color{cgemblue} \fontsize{13}{13}\selectfont
+  Center for Gravity, Electrical \& Magnetic Studies (CGEM)}
+}
+\newcommand{\tslideCSM}{
+  \textit{\color{cgemblue} \fontsize{11}{11}\selectfont
+  Department of Geophysics --- Colorado School of Mines}
+}
+\newcommand{\tslideMeeting}{
+  \textit{Conference/Meeting Name/Location} 
+}
+\newcommand{\tslideInfo}{
+  \textit{Session Information (if available)}
+}
+\newcommand{\tslideTime}{
+  \textit{\today}
+}
 
 %------------------------------------------
 % Background color
 \setbeamercolor{background canvas}{bg = black}
 \setbeamercolor{normal text}{fg = white}\usebeamercolor*{normal text}
+\setbeamertemplate{navigation symbols}{}
+
+\setbeamertemplate{footline}{%
+  \hspace{0.97\pagewidth}%
+  {\color{cgemblue} \fontsize{11}{10}\selectfont \insertframenumber}%
+  \vspace{2mm}
+}
 
 %------------------------------------------
 % Presentation
 \begin{document}
-  %
-  % Title slide
-  \begin{frame}
-    % 
+  \begin{frame}[plain]
     % Mines logo
     \begin{figure}
-      \begin{textblock*}{2cm}(0.075\paperwidth,0.4\paperheight)
-        \includegraphics[width=2cm]{mines-2018}
+      \begin{textblock*}{2.05cm}(0.065\paperwidth,0.38\paperheight)
+        \includegraphics[width=2.05cm]{mines-2018}
       \end{textblock*}
     \end{figure}
-    %
     % CGEM logo
     \begin{figure}
-      \begin{textblock*}{2.5cm}(0.75\paperwidth,0.4\paperheight)
-        \includegraphics[width=2.5cm]{cgem-logo}
+      \begin{textblock*}{2.85cm}(0.77\paperwidth,0.35\paperheight)
+        \includegraphics[width=2.85cm]{cgem-logo}
       \end{textblock*}
     \end{figure}
-    %
     % Title
     \begin{center}
-      \titlefont{Overly Flowery Presentation Title} \\[1cm]
-      \authorfont{R. Nate Crummett} \\
-      \authorfont{Yaoguo Li} \\[1cm]
-      \datefont{\today}
+      \tslideTitle \\
+      \vspace{1cm}\tslideAuthors \\ [1.2cm]
+      \tslideCGEM \\
+      \tslideCSM \\ [2mm]
+      \tslideMeeting \\ [-1mm]
+      \tslideInfo \\ [-1mm]
+      \tslideTime \vspace{-5mm}
     \end{center}
-    %
   \end{frame}
   %
+  %
+  %
+  \begin{frame}
+    \begin{centering}
+      \vspace{-1cm}
+      \Huge Outline \\
+      \vspace{5mm}
+    \end{centering}
+    \LARGE
+    \begin{enumerate}
+      \item[\color{cgemblue}\textbullet] {\color{cgemblue} Often a Waste of Your Time}
+      \item[\color{cgemblue}\textbullet] {\color{cgemblue} Audiences Attention Span Wanes}
+      \item[\color{cgemblue}\textbullet] {\color{cgemblue} Be Meaningful!}
+      \begin{enumerate}
+        \Large  
+        \vspace{1mm}
+        \item[\color{white}--] Introduce after hook
+        \begin{enumerate}
+          \large
+          \vspace{2mm}
+          \item[\color{cgemblue}\textbullet] {\color{cgemblue} Follow through talk?}
+        \end{enumerate}
+      \end{enumerate}
+    \end{enumerate}
+  \end{frame}
+  %
+  %
+  %
+  \begin{frame}
+    \begin{centering}
+      \vspace{-1cm}
+      \Huge All Slides Should Be Titled \\
+      \vspace{5mm}
+    \end{centering}
+  \end{frame}
 \end{document}
