@@ -1,16 +1,18 @@
-% CGEM Presentation
+%% CGEM Presentation
 \documentclass[aspectratio=169]{beamer}
 \usepackage{float}
 \usepackage{fontspec}
 \usepackage{enumitem}
 \usepackage{graphicx}
+\usepackage{hyperref}
 \usepackage[absolute,overlay]{textpos}
 \usepackage{xcolor}
 
 \graphicspath{{./Figure}}
+\hypersetup{colorlinks=false} % Link to corresponding author
 
 %-----------------------------------------
-% CGEM Settings
+%% CGEM Settings
 \definecolor{cgemblue}{HTML}{90C5FB}
 \setsansfont{Arial}
 
@@ -25,7 +27,7 @@
 % Slide authors
 \newcommand{\tslideAuthors}{
   {\fontsize{20}{22}\selectfont {\color{cgemblue}
-    Corresponding Author*\\[3mm]
+    \href{mailto:robert_crummett@mines.edu}{R. Nate Crummett*} \\ [3mm]
     Author}
   }
 }
@@ -52,8 +54,11 @@
 % Background color
 \setbeamercolor{background canvas}{bg = black}
 \setbeamercolor{normal text}{fg = white}\usebeamercolor*{normal text}
+
+% Turn off Beamer navigation buttons
 \setbeamertemplate{navigation symbols}{}
 
+% Page numbering
 \setbeamertemplate{footline}{%
   \hspace{0.97\pagewidth}%
   {\color{cgemblue} \fontsize{11}{10}\selectfont \insertframenumber}%
@@ -61,7 +66,7 @@
 }
 
 %------------------------------------------
-% Presentation
+%% Presentation
 \begin{document}
   \begin{frame}[plain]
     % Mines logo
@@ -94,7 +99,7 @@
     \begin{centering}
       \vspace{-1cm}
       \Huge Outline \\
-      \vspace{5mm}
+      \vspace{3mm}
     \end{centering}
     \LARGE
     \begin{enumerate}
