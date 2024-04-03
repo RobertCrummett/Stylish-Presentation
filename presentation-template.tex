@@ -21,24 +21,21 @@
 % Slide title
 \newcommand{\tslideTitle}{
   {\fontsize{25}{60}\selectfont 
-    Don't Read Title to Your Audience
-  }
+    Don't Read Title to Your Audience}
 }
 % Slide authors
 \newcommand{\tslideAuthors}{
-  {\fontsize{20}{22}\selectfont {\color{cgemblue}
+  \textcolor{cgemblue}{\fontsize{20}{22}\selectfont
     \href{mailto:robert_crummett@mines.edu}{R. Nate Crummett*} \\ [3mm]
-    Author}
-  }
-}
+    Author}}
 % Slide Affiliations
 \newcommand{\tslideCGEM}{
-  \textit{\color{cgemblue} \fontsize{13}{13}\selectfont
-  Center for Gravity, Electrical \& Magnetic Studies (CGEM)}
+  \textit{\color{cgemblue}{\fontsize{13}{13}\selectfont
+  Center for Gravity, Electrical \& Magnetic Studies (CGEM)}}
 }
 \newcommand{\tslideCSM}{
-  \textit{\color{cgemblue} \fontsize{11}{11}\selectfont
-  Department of Geophysics --- Colorado School of Mines}
+  \textit{\textcolor{cgemblue}{\fontsize{11}{11}\selectfont
+  Department of Geophysics --- Colorado School of Mines}}
 }
 \newcommand{\tslideMeeting}{
   \textit{Conference/Meeting Name/Location} 
@@ -61,9 +58,11 @@
 % Page numbering
 \setbeamertemplate{footline}{%
   \hspace{0.97\pagewidth}%
-  {\color{cgemblue} \fontsize{11}{10}\selectfont \insertframenumber}%
+  \textcolor{cgemblue}{\fontsize{11}{10}\selectfont \insertframenumber}
   \vspace{2mm}
 }
+
+% Label items
 
 %------------------------------------------
 %% Presentation
@@ -102,18 +101,22 @@
       \vspace{3mm}
     \end{centering}
     \LARGE
-    \begin{enumerate}
-      \item[\color{cgemblue}\textbullet] {\color{cgemblue} Often a Waste of Your Time}
-      \item[\color{cgemblue}\textbullet] {\color{cgemblue} Audiences Attention Span Wanes}
-      \item[\color{cgemblue}\textbullet] {\color{cgemblue} Be Meaningful!}
-      \begin{enumerate}
+    \begin{enumerate}[label=\color{cgemblue}\textbullet, labelindent=\parindent]
+      \item \textcolor{cgemblue}{Often a Waste of Your Time}
+      \item \textcolor{cgemblue}{Audiences Attention Span Wanes}
+      \item \textcolor{cgemblue}{Be Meaningful!}
+      \begin{enumerate}[label=\color{white}--, labelindent=\parindent]
         \Large  
         \vspace{1mm}
-        \item[\color{white}--] Introduce after hook
-        \begin{enumerate}
+        \item Introduce after hook
+        \begin{enumerate}[label=\color{cgemblue}\textbullet, labelindent=\parindent]
           \large
           \vspace{2mm}
-          \item[\color{cgemblue}\textbullet] {\color{cgemblue} Follow through talk?}
+        \item \textcolor{cgemblue}{Follow through talk?}
+          \begin{enumerate}[label=\color{white}--]
+            \vspace{2mm}
+            \item Last bullet
+          \end{enumerate}
         \end{enumerate}
       \end{enumerate}
     \end{enumerate}
