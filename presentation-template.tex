@@ -1,122 +1,28 @@
-%% CGEM Presentation
 \documentclass[aspectratio=169]{beamer}
-\usepackage{float}
-\usepackage{fontspec}
-\usepackage{enumitem}
-\usepackage{graphicx}
-\usepackage{hyperref}
-\usepackage[absolute,overlay]{textpos}
-\usepackage{xcolor}
-
-\graphicspath{{./Figure}}
-\hypersetup{colorlinks=false} % Link to corresponding author
-
-%-----------------------------------------
-%% CGEM Settings
-\definecolor{cgemblue}{HTML}{90C5FB}
-\setsansfont{Arial}
-
-%------------------------------------------
-%% Title page
-% Slide title
-\newcommand{\tslideTitle}{
-  {\fontsize{25}{60}\selectfont 
-    Don't Read Title to Your Audience}
-}
-% Slide authors
-\newcommand{\tslideAuthors}{
-  \textcolor{cgemblue}{\fontsize{20}{22}\selectfont
-    \href{mailto:robert_crummett@mines.edu}{R. Nate Crummett*} \\ [3mm]
-    Author}}
-% Slide Affiliations
-\newcommand{\tslideCGEM}{
-  \textit{\color{cgemblue}{\fontsize{13}{13}\selectfont
-  Center for Gravity, Electrical \& Magnetic Studies (CGEM)}}
-}
-\newcommand{\tslideCSM}{
-  \textit{\textcolor{cgemblue}{\fontsize{11}{11}\selectfont
-  Department of Geophysics --- Colorado School of Mines}}
-}
-\newcommand{\tslideMeeting}{
-  \textit{Conference/Meeting Name/Location} 
-}
-\newcommand{\tslideInfo}{
-  \textit{Session Information (if available)}
-}
-\newcommand{\tslideTime}{
-  \textit{\today}
-}
-
-%------------------------------------------
-% Background color
-\setbeamercolor{background canvas}{bg = black}
-\setbeamercolor{normal text}{fg = white}\usebeamercolor*{normal text}
-
-% Turn off Beamer navigation buttons
-\setbeamertemplate{navigation symbols}{}
-
-% Page numbering
-\setbeamertemplate{footline}{%
-  \hspace{0.97\pagewidth}%
-  \textcolor{cgemblue}{\fontsize{11}{10}\selectfont \insertframenumber}
-  \vspace{2mm}
-}
-
-% Label items
+\usepackage{cgem-presentation} % CGEM Presentation Settings
 
 %------------------------------------------
 %% Presentation
 \begin{document}
-  \begin{frame}[plain]
-    % Mines logo
-    \begin{figure}
-      \begin{textblock*}{2.05cm}(0.065\paperwidth,0.38\paperheight)
-        \includegraphics[width=2.05cm]{mines-2018}
-      \end{textblock*}
-    \end{figure}
-    % CGEM logo
-    \begin{figure}
-      \begin{textblock*}{2.85cm}(0.77\paperwidth,0.35\paperheight)
-        \includegraphics[width=2.85cm]{cgem-logo}
-      \end{textblock*}
-    \end{figure}
-    % Title
-    \begin{center}
-      \tslideTitle \\
-      \vspace{1cm}\tslideAuthors \\ [1.2cm]
-      \tslideCGEM \\
-      \tslideCSM \\ [2mm]
-      \tslideMeeting \\ [-1mm]
-      \tslideInfo \\ [-1mm]
-      \tslideTime \vspace{-5mm}
-    \end{center}
-  \end{frame}
-  %
-  %
+  \titleframe
   %
   \begin{frame}
+    % Slide title
     \begin{centering}
       \vspace{-1cm}
       \Huge Outline \\
       \vspace{3mm}
     \end{centering}
-    \LARGE
-    \begin{enumerate}[label=\color{cgemblue}\textbullet, labelindent=\parindent]
-      \item \textcolor{cgemblue}{Often a Waste of Your Time}
-      \item \textcolor{cgemblue}{Audiences Attention Span Wanes}
-      \item \textcolor{cgemblue}{Be Meaningful!}
-      \begin{enumerate}[label=\color{white}--, labelindent=\parindent]
-        \Large  
-        \vspace{1mm}
-        \item Introduce after hook
-        \begin{enumerate}[label=\color{cgemblue}\textbullet, labelindent=\parindent]
-          \large
-          \vspace{2mm}
-        \item \textcolor{cgemblue}{Follow through talk?}
-          \begin{enumerate}[label=\color{white}--]
-            \vspace{2mm}
-            \item Last bullet
-          \end{enumerate}
+    %
+    % Slide list
+    \begin{enumerate}
+      \item Often a Waste of Your Time
+      \item Audiences Attention Span Wanes
+      \item Be Meaningful! \\[1mm]
+      \begin{enumerate}
+        \item Introduce after hook \\[2mm]
+        \begin{enumerate}
+          \item Follow through talk?
         \end{enumerate}
       \end{enumerate}
     \end{enumerate}
@@ -128,7 +34,8 @@
     \begin{centering}
       \vspace{-1cm}
       \Huge All Slides Should Be Titled \\
-      \vspace{5mm}
+      \vspace{3mm}
     \end{centering}
   \end{frame}
+
 \end{document}

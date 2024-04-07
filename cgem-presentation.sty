@@ -1,0 +1,132 @@
+%% CGEM Presentation Package
+\ProvidesPackage{cgem-presentation}
+
+%----------------------------------------
+%% CGEM Presentation Package Dependencies
+\usepackage{amsmath, amsfonts, amssymb} % Math
+\usepackage{fontspec} % Fonts --- If this fails to compile, use XeLaTeX or LuaTeX
+\usepackage{graphicx} % Figures
+\usepackage{hyperref} % Links
+\usepackage[absolute,overlay]{textpos} % Figure placement
+\usepackage{xcolor} % Colors
+
+%-----------------------------------------
+%% CGEM Settings
+\graphicspath{{./Figure}}
+\hypersetup{colorlinks=false} % Link to corresponding author
+\definecolor{cgemblue}{HTML}{90C5FB} % CGEM light blue
+\setsansfont{Arial}
+
+% Background color
+\setbeamercolor{background canvas}{bg = black}
+\setbeamercolor{normal text}{fg = white}\usebeamercolor*{normal text}
+
+% Turn off Beamer navigation buttons
+\setbeamertemplate{navigation symbols}{}
+
+% Page numbering
+\setbeamertemplate{footline}
+{
+  \hspace{0.97\pagewidth}
+  \textcolor{cgemblue}{\large \insertframenumber}
+  \vspace{2mm}
+}
+
+%------------------------------------------
+%% Title page
+
+% Title, Rename to something informative but not too long
+\renewcommand{\title}
+{
+  {\Huge Don't Read Title to Your Audience}
+}
+% Slide authors. The corresponding author can be indicated with * and hyperlinked 
+\renewcommand{\author}
+{
+  \textcolor{cgemblue}
+  {\huge
+    \href{mailto:robert_crummett@mines.edu}{R. Nate Crummett*} \\ [3mm]
+    Author \#2
+  }
+}
+% CGEM Affiliation line
+\newcommand{\affilCGEM}
+{
+  \textit{\color{cgemblue}
+  {\Large
+    Center for Gravity, Electrical \& Magnetic Studies (CGEM)
+  }}
+}
+% CSM, Department of Geophysics affiliation line
+\newcommand{\affilCSM}
+{
+  \textit{\textcolor{cgemblue}
+  {\large
+    Department of Geophysics --- Colorado School of Mines
+  }}
+}
+% Meeting affiliations, location, conference name
+\newcommand{\affilMeeting}
+{
+  \textit{Conference/Meeting Name/Location} 
+}
+% Session information for the specific meeting
+\newcommand{\affilInfo}
+{
+  \textit{Session Information (if available)}
+}
+% Date / Time of presentation --- make sure to adjust this to the day you will give the presentation!
+\renewcommand{\date}
+{
+  \textit{\today}
+}
+
+%% Create formatted title frame with above functions
+\newcommand{\titleframe}
+{
+  \begin{frame}[plain]
+    % Mines logo
+    \begin{figure}
+      \begin{textblock*}{2.05cm}(0.065\paperwidth,0.38\paperheight)
+        \includegraphics[width=2.05cm]{mines-2018}
+      \end{textblock*}
+    \end{figure}
+    % CGEM logo
+    \begin{figure}
+      \begin{textblock*}{2.85cm}(0.77\paperwidth,0.35\paperheight)
+        \includegraphics[width=2.85cm]{cgem-logo}
+      \end{textblock*}
+    \end{figure}
+    % Title
+    \begin{center}
+      \title \\
+      \vspace{1cm}
+      \author \\ [1.2cm]
+      \affilCGEM \\
+      \affilCSM \\ [2mm]
+      \affilMeeting \\ [-1mm]
+      \affilInfo \\ [-1mm]
+      \date \vspace{-5mm}
+    \end{center}
+  \end{frame}
+}
+
+%------------------------------------------
+%% Enumeration / Itemize  / List Settings, ie, Bullet Point Lists
+
+% Base level
+\setbeamertemplate{enumerate item}{\LARGE \color{cgemblue} \textbullet}
+\setbeamerfont*{itemize/enumerate body}{size=\LARGE}
+\setbeamercolor{itemize/enumerate body}{fg=cgemblue}
+
+% First Level
+\setbeamertemplate{enumerate subitem}{\Large \color{white} --}
+\setbeamerfont*{itemize/enumerate subbody}{size=\Large}
+\setbeamercolor{itemize/enumerate subbody}{fg=white}
+
+% Second Level -- only use in emergencies
+\setbeamertemplate{enumerate subsubitem}{\large \color{cgemblue} \textbullet}
+\setbeamerfont*{itemize/enumerate subsubbody}{size=\large}
+\setbeamercolor{itemize/enumerate subsubbody}{fg=cgemblue}
+
+%------------------------------------------
