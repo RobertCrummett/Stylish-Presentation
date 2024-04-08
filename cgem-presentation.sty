@@ -4,6 +4,7 @@
 %----------------------------------------
 %% CGEM Presentation Package Dependencies
 \usepackage{amsmath, amsfonts, amssymb} % Math
+\usepackage[backend=biber, style=alphabetic, sorting=nyt]{biblatex} % Bibliography
 \usepackage{fontspec} % Fonts --- If this fails to compile, use XeLaTeX or LuaTeX
 \usepackage{graphicx} % Figures
 \usepackage{hyperref} % Links
@@ -12,6 +13,7 @@
 
 %-----------------------------------------
 %% CGEM Settings
+\addbibresource{bibliography.bib}
 \graphicspath{{./Figure}}
 \hypersetup{colorlinks=false} % Link to corresponding author
 \definecolor{cgemblue}{HTML}{90C5FB} % CGEM light blue
@@ -138,3 +140,55 @@
 \setbeamercolor{frametitle}{fg=white}
 
 %------------------------------------------
+%% Question Slide
+
+\newcommand{\whitebar}
+{
+  \color{white} \noindent \makebox[\linewidth]{\rule{\textwidth}{0.7pt}}
+}
+\newcommand{\questionslide}
+{
+  \begin{frame}[plain]
+    \begin{center}
+      % Mines logo
+      \begin{figure}
+        \begin{textblock*}{1cm}(0.065\paperwidth,0.03\paperheight)
+          \includegraphics[width=1cm]{mines-2018}
+        \end{textblock*}
+      \end{figure}
+      % CGEM logo
+      \begin{figure}
+        \begin{textblock*}{1cm}(0.87\paperwidth,0.02\paperheight)
+          \includegraphics[width=1.3cm]{cgem-logo}
+        \end{textblock*}
+      \end{figure}
+      % Questions slide
+      \color{cgemblue}
+      \footnotesize
+      \vspace{-8mm}
+      Colorado School of Mines \\[2mm]
+      \Large
+      Center for Gravity, Electrical \& Magnetic Studies \\[-2mm]
+      \whitebar \\[1.7cm]
+      \color{cgemblue}
+      \LARGE
+      Thank You \\
+      Questions? \\[1.82cm]
+      \whitebar \\
+      \color{cgemblue}
+      \small
+      \href{mailto:robert_crummett@mines.edu}{R. Nate Crummett*: robert\_crummett@mines.edu} \\
+      Author \#2
+    \end{center}
+  \end{frame}
+}
+
+%-------------------------------------------
+% Bibliography
+
+\newcommand{\references}
+{
+  \begin{frame}[plain]
+    \printbibliography
+  \end{frame}
+}
