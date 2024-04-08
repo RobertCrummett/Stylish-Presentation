@@ -9,16 +9,21 @@
 \usepackage{fontspec} % Fonts --- If this fails to compile, use XeLaTeX or LuaTeX
 \usepackage{graphicx} % Figures
 \usepackage{hyperref} % Links
+\usepackage{luacode}
 \usepackage[absolute,overlay]{textpos} % Figure placement
 \usepackage{xcolor} % Colors
 
 % Linking important files and folders
-\addbibresource{references.bib} % Bibtex file containing all references
 \graphicspath{{./Figure}} % Directory containing all figures
 
 %-----------------------------------------
 %% CGEM Settings
-\hypersetup{colorlinks=false} % Link to corresponding author
+\hypersetup{
+  colorlinks=true,
+  citecolor=cgemblue,
+  linkcolor=cgemblue,
+  urlcolor=magenta,
+} % Link to corresponding author
 \definecolor{cgemblue}{HTML}{90C5FB} % CGEM light blue
 \setsansfont{Arial}
 
@@ -50,7 +55,7 @@
 {
   \textcolor{cgemblue}
   {\huge
-    \href{mailto:robert_crummett@mines.edu}{R. Nate Crummett*} \\ [3mm]
+    R. Nate Crummett\hyperlink{corr}{*} \\ [3mm]
     Author \#2
   }
 }
@@ -180,16 +185,67 @@
       \whitebar \\
       \color{cgemblue}
       \small
-      \href{mailto:robert_crummett@mines.edu}{R. Nate Crummett*: robert\_crummett@mines.edu} \\
+      R. Nate Crummett*: \hypertarget{corr}{\href{mailto:robert_crummett@mines.edu}{robert\_crummett@mines.edu}} \\
       Author \#2
     \end{center}
   \end{frame}
 }
 
 %-------------------------------------------
-% Bibliography
+%% Bibliography Style
+
+% Lua function to collect *.bib files in Bib directory
+% Wonderful idea by Skuost, Dec 5 2023
+% https://tex.stackexchange.com/questions/192917/include-all-bib-files-in-one-directory-to-a-bibliography
+\begin{luacode*}
+  function findBibFiles(folder)
+    local files = {}
+    local lfs = require("lfs")
+    if isDir(folder) then
+      for file in lfs.dir(folder) do
+        if file:match("%.bib$") then
+          table.insert(files, folder .. "/" .. file)
+        end
+      end
+    end
+    return files
+  end
+
+  function isDir(name)
+    if type(name)~="string" then return false end
+    local cd = lfs.currentdir()
+    local is = lfs.chdir(name) and true or false
+    lfs.chdir(cd)
+    return is
+  end
+\end{luacode*}
+
+% Tex function to assemble bibliography
+\newcommand{\setbibliographypath}[1]{
+  \directlua{
+    local files = findBibFiles("#1")
+    for _, file in ipairs(files) do
+      tex.print("\\addbibresource{" .. file .. "}")
+    end
+  }
+}
+
+% Biblography directory
+\setbibliographypath{Bib}
+
+% Biblography colors
 \setbeamercolor*{bibliography entry title}{fg=white}
 \setbeamercolor*{bibliography entry location}{fg=white}
 \setbeamercolor*{bibliography entry note}{fg=white}
 \setbeamercolor*{bibliography entry author}{fg=white}
-\setbeamertemplate{bibliography item}{}
+\setbeamercolor*{bibliography item}{fg=cgemblue}
+
+\setbeamertemplate{frametitle continuation}{}
+
+% References slide, usuing everything above to assemble
+\newcommand{\references}
+{
+  \begin{frame}[allowframebreaks, plain]{References}
+    \printbibliography
+  \end{frame}
+}
