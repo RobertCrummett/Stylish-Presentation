@@ -3,8 +3,11 @@
 %------------------------------------------
 %% Presentation
 \begin{document}
+
+  % Title slide
   \titleframe
 
+  % Adding outline slide
   \begin{frame}{Outline}
     \begin{enumerate}
       \item Often a Waste of Your Time
@@ -19,21 +22,34 @@
     \end{enumerate}
   \end{frame}
  
+  % Adding title to slide
   \begin{frame}{All Slides Should Be Titled}
   \end{frame}
-  
+
+  % Adding citations
   \begin{frame}{Citations Managed by Bib\TeX}
     \LARGE
-    Citations are easy! \cite{doi:10.1190/1.1444302} \\[2mm]
+    Everything gets hyperlinked! \cite{doi:10.1190/1.1444302} \\[2mm]
 
     Just use the \texttt{cite} function \cite{doi:10.1190/image2022-3729385.1} \\[2mm]
     
-    Bib\TeX\  handles everything else \cite{WEIHERMANN2021104682} \\[1cm]
+    Bib\TeX\ handles everything else \\[1cm]
     
-    Do not like this format? \\
+    Do not like this format?
 
-    Try another biblatex style! \cite{doi:10.1190/geo2020-0729.1}
+    Try another citation style! \cite{doi:10.1190/geo2020-0729.1}
+  \end{frame}
 
+  % Adding figures
+  \begin{frame}{Figure Demo}
+    \begin{figure}
+      \begin{textblock*}{0.7\paperwidth}(0.15\paperwidth,0.18\paperheight)
+        % Graphic
+        \includegraphics[width=0.7\paperwidth]{weihermann\_et\_al\_2022\_inverted}
+        % Citation
+        \citefig{WEIHERMANN2021104682}
+      \end{textblock*}
+    \end{figure}
   \end{frame}
  
   \begin{frame}{Acknowledgments}
