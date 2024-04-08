@@ -1,6 +1,10 @@
 # Remove all of the build files from LuaLaTex...
 *.aux
+*.bbl
 *.bcf
+*.blg
+*.fdb_latexmk
+*.fls
 *.log
 *.nav
 *.out

@@ -3,18 +3,21 @@
 
 %----------------------------------------
 %% CGEM Presentation Package Dependencies
+% Preamble
 \usepackage{amsmath, amsfonts, amssymb} % Math
-\usepackage[backend=biber, style=alphabetic, sorting=nyt]{biblatex} % Bibliography
+\usepackage[backend=biber, style=alphabetic]{biblatex} % Bibliogrpahy
 \usepackage{fontspec} % Fonts --- If this fails to compile, use XeLaTeX or LuaTeX
 \usepackage{graphicx} % Figures
 \usepackage{hyperref} % Links
 \usepackage[absolute,overlay]{textpos} % Figure placement
 \usepackage{xcolor} % Colors
 
+% Linking important files and folders
+\addbibresource{references.bib} % Bibtex file containing all references
+\graphicspath{{./Figure}} % Directory containing all figures
+
 %-----------------------------------------
 %% CGEM Settings
-\addbibresource{bibliography.bib}
-\graphicspath{{./Figure}}
 \hypersetup{colorlinks=false} % Link to corresponding author
 \definecolor{cgemblue}{HTML}{90C5FB} % CGEM light blue
 \setsansfont{Arial}
@@ -185,10 +188,8 @@
 
 %-------------------------------------------
 % Bibliography
-
-\newcommand{\references}
-{
-  \begin{frame}[plain]
-    \printbibliography
-  \end{frame}
-}
+\setbeamercolor*{bibliography entry title}{fg=white}
+\setbeamercolor*{bibliography entry location}{fg=white}
+\setbeamercolor*{bibliography entry note}{fg=white}
+\setbeamercolor*{bibliography entry author}{fg=white}
+\setbeamertemplate{bibliography item}{}
