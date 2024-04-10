@@ -2,6 +2,14 @@
 \usepackage{cgem-presentation} % CGEM Presentation Settings
 
 %------------------------------------------
+% Set figures path
+\graphicspath{{./Figure}} % Directory containing all figures
+
+%------------------------------------------
+% Set bibliography directory
+\setbibliographypath{Bib}
+
+%------------------------------------------
 %% Title
 
 % Title and Authors
@@ -122,6 +130,8 @@
 
   \questionslide
   
-  \references
+  \begin{frame}[allowframebreaks, plain]{References}
+    \printbibliography
+  \end{frame}
 
 \end{document}

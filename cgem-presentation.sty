@@ -5,40 +5,36 @@
 %% CGEM Presentation Package Dependencies
 % Preamble
 \usepackage{amsmath, amsfonts, amssymb} % Math
-\usepackage[backend=biber, style=alphabetic]{biblatex} % Bibliogrpahy
+\usepackage[backend=biber, style=alphabetic]{biblatex} % Bibliogrpahy, change style if you prefer
 \usepackage{fontspec} % Fonts --- If this fails to compile, use XeLaTeX or LuaTeX
 \usepackage{graphicx} % Figures
 \usepackage{hyperref} % Links
 \usepackage[absolute,overlay]{textpos} % Figure placement
 \usepackage{xcolor} % Colors
 
-% Linking important files and folders
-\directlua{bib = require("Lua.bib")}
-\directlua{title = require("Lua.title")}
-\directlua{authors = require("Lua.authors")}
-\directlua{affiliations = require("Lua.affiliations")}
-\directlua{meetingInfo = require("Lua.meetingInfo") }
-\graphicspath{{./Figure}} % Directory containing all figures
-
-% Make the bibliography
-\newcommand{\setbibliographypath}[1]
-{
-  \directlua{ bib.make("#1") }  
-}
-\setbibliographypath{Bib}
+% Linking Lua scripts
+\directlua{bib = require("Lua.bib")} % bibliography
+\directlua{title = require("Lua.title")} % presentation title
+\directlua{authors = require("Lua.authors")} % presentation authors
+\directlua{affiliations = require("Lua.affiliations")} % affiliations - CGEM, CSM, GMRC, etc
+\directlua{meetingInfo = require("Lua.meetingInfo") } % meeting, conference, session, date, etc
 
 %-----------------------------------------
-%% CGEM Settings
+% CGEM light blue color
+\definecolor{cgemblue}{HTML}{90C5FB}
+
+% Font Settings
+\setsansfont{Arial}
+
+% Hyperlink settings
 \hypersetup{
   colorlinks=true,
   citecolor=cgemblue,
   linkcolor=cgemblue,
   urlcolor=magenta,
 } % Link to corresponding author
-\definecolor{cgemblue}{HTML}{90C5FB} % CGEM light blue
-\setsansfont{Arial}
 
-% Background color
+% Background and default text color
 \setbeamercolor{background canvas}{bg = black}
 \setbeamercolor{normal text}{fg = white}\usebeamercolor*{normal text}
 
@@ -54,29 +50,19 @@
 }
 
 %------------------------------------------
-%% Title page
+%% Title page functionality
 
 % Title, Rename to something informative but not too long
-\renewcommand{\title}[1]
-{
-  \directlua{ title.set("#1") }
-}
-% Slide authors. The corresponding author can be indicated with * and hyperlinked 
-\renewcommand{\author}[1]
-{
-  \directlua{ authors.set("#1") }
-}
+\renewcommand{\title}[1]{ \directlua{ title.set("#1") } }
+
+% Slide authors
+\renewcommand{\author}[1]{ \directlua{ authors.set("#1") } }
 
 % CGEM Affiliation line
-\newcommand{\affiliations}[1]
-{
-  \directlua{ affiliations.set("#1") }
-}
+\newcommand{\affiliations}[1]{ \directlua{ affiliations.set("#1") } }
 
-\newcommand{\meeting}[1]
-{
-  \directlua{ meetingInfo.set("#1") }
-}
+% Meeting information, date, session #, etc
+\newcommand{\meeting}[1]{\directlua{ meetingInfo.set("#1") } }
 
 % Create new title
 \renewcommand{\maketitle}[4]
@@ -102,7 +88,7 @@
 \setbeamerfont*{itemize/enumerate subbody}{size=\Large}
 \setbeamercolor{itemize/enumerate subbody}{fg=white}
 
-% Second Level -- only use in emergencies
+% Second Level -- only use in emergencies!!
 \setbeamertemplate{enumerate subsubitem}{\large \color{cgemblue} \textbullet}
 \setbeamerfont*{itemize/enumerate subsubbody}{size=\large}
 \setbeamercolor{itemize/enumerate subsubbody}{fg=cgemblue}
@@ -118,6 +104,7 @@
 %------------------------------------------
 %% Question Slide
 
+% Print a horizontal while bar across the text width of frame
 \newcommand{\whitebar}
 {
   \color{white} \noindent \makebox[\linewidth]{\rule{\textwidth}{0.7pt}}
@@ -152,13 +139,15 @@
       Questions? \\[1.82cm]
       \whitebar \\
       \directlua{ authors.questionframe() }
-      %R. Nate Crummett*: \hypertarget{1}{\href{mailto:robert_crummett@mines.edu}{robert\_crummett@mines.edu}} \\
     \end{center}
   \end{frame}
 }
 
 %-------------------------------------------
 %% Bibliography Style
+
+% Linking bibliography folder
+\newcommand{\setbibliographypath}[1]{ \directlua{ bib.make("#1") } }
 
 % Biblography colors
 \setbeamercolor*{bibliography entry title}{fg=white}
@@ -167,20 +156,13 @@
 \setbeamercolor*{bibliography entry author}{fg=white}
 \setbeamercolor*{bibliography item}{fg=cgemblue}
 
+% No numbering on continued reference slides
 \setbeamertemplate{frametitle continuation}{}
-
-% References slide, usuing everything above to assemble
-\newcommand{\references}
-{
-  \begin{frame}[allowframebreaks, plain]{References}
-    \printbibliography
-  \end{frame}
-}
 
 %--------------------------------------------
 %% Citaions
 
-% Figure citation
+% Figure citation beneath bottom right hand corner of image, integrates with BibTeX
 \newcommand{\citefig}[1]
 {
   \begin{flushright}
