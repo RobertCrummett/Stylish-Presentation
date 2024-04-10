@@ -13,14 +13,17 @@
 \usepackage{xcolor} % Colors
 
 % Linking important files and folders
-\directlua{bib = require("Lua.makebib")}
-\directlua{tit = require("Lua.maketitle")}
+\directlua{bib = require("Lua.bib")}
+\directlua{title = require("Lua.title")}
+\directlua{authors = require("Lua.authors")}
+\directlua{affiliations = require("Lua.affiliations")}
+\directlua{meetingInfo = require("Lua.meetingInfo") }
 \graphicspath{{./Figure}} % Directory containing all figures
 
 % Make the bibliography
 \newcommand{\setbibliographypath}[1]
 {
-  \directlua{bib.make("#1")}  
+  \directlua{ bib.make("#1") }  
 }
 \setbibliographypath{Bib}
 
@@ -54,47 +57,25 @@
 %% Title page
 
 % Title, Rename to something informative but not too long
-\renewcommand{\title}
+\renewcommand{\title}[1]
 {
-  \directlua{ tit.title("Do Not Read Title To Audience") }
+  \directlua{ title.set("#1") }
 }
 % Slide authors. The corresponding author can be indicated with * and hyperlinked 
-\renewcommand{\author}
+\renewcommand{\author}[1]
 {
-  %\hypertarget{corr}{
-  \directlua{tit.author("\\hyperlink{corr}{R. Nate Crummett*},Author 2")}
+  \directlua{ authors.set("#1") }
 }
 
 % CGEM Affiliation line
-\newcommand{\affilCGEM}
+\newcommand{\affiliations}[1]
 {
-  \textit{\color{cgemblue}
-  {\Large
-    Center for Gravity, Electrical \& Magnetic Studies (CGEM)
-  }}
+  \directlua{ affiliations.set("#1") }
 }
-% CSM, Department of Geophysics affiliation line
-\newcommand{\affilCSM}
+
+\newcommand{\meeting}[1]
 {
-  \textit{\textcolor{cgemblue}
-  {\large
-    Department of Geophysics --- Colorado School of Mines
-  }}
-}
-% Meeting affiliations, location, conference name
-\newcommand{\affilMeeting}
-{
-  \textit{Conference/Meeting Name/Location} 
-}
-% Session information for the specific meeting
-\newcommand{\affilInfo}
-{
-  \textit{Session Information (if available)}
-}
-% Date / Time of presentation --- make sure to adjust this to the day you will give the presentation!
-\renewcommand{\date}
-{
-  \textit{\today}
+  \directlua{ meetingInfo.set("#1") }
 }
 
 %% Create formatted title frame with above functions
@@ -115,14 +96,10 @@
     \end{figure}
     % Title
     \begin{center}
-      \title \\
-      \vspace{1cm}
-      \author \\ [1.2cm]
-      \affilCGEM \\
-      \affilCSM \\ [2mm]
-      \affilMeeting \\ [-1mm]
-      \affilInfo \\ [-1mm]
-      \date \vspace{-5mm}
+      \directlua{ title.titleframe() } \\ [1cm]
+      \directlua{ authors.titleframe() } \\ [1.2cm]
+      \directlua{ affiliations.titleframe() } \\ [2mm]
+      \directlua{ meetingInfo.titleframe() } \\ [-5mm]
     \end{center}
   \end{frame}
 }
@@ -189,10 +166,8 @@
       Thank You \\
       Questions? \\[1.82cm]
       \whitebar \\
-      \color{cgemblue}
-      \small
-      R. Nate Crummett*: \hypertarget{corr}{\href{mailto:robert_crummett@mines.edu}{robert\_crummett@mines.edu}} \\
-      Author \#2
+      \directlua{ authors.questionframe() }
+      %R. Nate Crummett*: \hypertarget{1}{\href{mailto:robert_crummett@mines.edu}{robert\_crummett@mines.edu}} \\
     \end{center}
   \end{frame}
 }
