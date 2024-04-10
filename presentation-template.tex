@@ -1,5 +1,9 @@
 \documentclass[aspectratio=169]{beamer}
 \usepackage{cgem-presentation} % CGEM Presentation Settings
+
+%------------------------------------------
+%% Title page
+
 %------------------------------------------
 %% Presentation
 \begin{document}
@@ -24,6 +28,28 @@
  
   % Adding title to slide
   \begin{frame}{All Slides Should Be Titled}
+  \end{frame}
+
+  % Add equations to slides
+  \begin{frame}{Adding Equations}
+    \LARGE
+    Reduction To Pole (RTP) is a \textcolor{cgemblue}{rotation} \\[5mm]
+    
+    % RTP operator
+    \begin{equation*}
+      \widetilde{\mathbf{T}} =
+        \textcolor{cgemblue}
+        {
+          \frac{(\hat{\mathit{u}} \cdot \vec{\mathit{k}})
+          (\hat{\mathit{v}} \cdot \vec{\mathit{k}})}
+          {\mathit{p}^2 + \mathit{q}^2}
+        }
+        \hspace{1mm}
+        \widetilde{\mathbf{R}}
+    \end{equation*}
+    
+    \vspace{1cm}
+    Fields are \textcolor{cgemblue}{rotated} as if they were vertical (ie, Pole)
   \end{frame}
 
   % Adding citations
