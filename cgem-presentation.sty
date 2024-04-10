@@ -17,6 +17,13 @@
 \directlua{tit = require("Lua.maketitle")}
 \graphicspath{{./Figure}} % Directory containing all figures
 
+% Make the bibliography
+\newcommand{\setbibliographypath}[1]
+{
+  \directlua{bib.make("#1")}  
+}
+\setbibliographypath{Bib}
+
 %-----------------------------------------
 %% CGEM Settings
 \hypersetup{
@@ -49,17 +56,13 @@
 % Title, Rename to something informative but not too long
 \renewcommand{\title}
 {
-  {\Huge Do Not Read Title To Audience}
+  \directlua{ tit.title("Do Not Read Title To Audience") }
 }
 % Slide authors. The corresponding author can be indicated with * and hyperlinked 
 \renewcommand{\author}
 {
-  \textcolor{cgemblue}
-  {
-    \LARGE
-    R. Nate Crummett\hyperlink{corr}{*} \\ [3mm]
-    Author \#2
-  }
+  %\hypertarget{corr}{
+  \directlua{tit.author("\\hyperlink{corr}{R. Nate Crummett*},Author 2")}
 }
 
 % CGEM Affiliation line
@@ -196,15 +199,6 @@
 
 %-------------------------------------------
 %% Bibliography Style
-
-% Make the bibliography
-\newcommand{\setbibliographypath}[1]
-{
-  \directlua{bib.make("#1")}  
-}
-
-% Biblography directory
-\setbibliographypath{Bib}
 
 % Biblography colors
 \setbeamercolor*{bibliography entry title}{fg=white}
