@@ -2,7 +2,7 @@
 \usepackage{cgem-presentation} % CGEM Presentation Settings
 
 %------------------------------------------
-%% Title page
+%% Title
 
 % Title and Authors
 \title{Do Not Read Title to Audience}
@@ -23,7 +23,22 @@
 \begin{document}
 
   % Title slide
-  \titleframe
+  \begin{frame}[plain]
+    % Mines logo
+    \begin{figure}
+      \begin{textblock*}{2.05cm}(0.065\paperwidth,0.38\paperheight)
+        \includegraphics[width=2.05cm]{mines-2018}
+      \end{textblock*}
+    \end{figure}
+    % CGEM logo
+    \begin{figure}
+      \begin{textblock*}{2.85cm}(0.77\paperwidth,0.35\paperheight)
+        \includegraphics[width=2.85cm]{cgem-logo}
+      \end{textblock*}
+    \end{figure}
+    % Title
+    \maketitle{1cm}{1.2cm}{2mm}{-5mm}
+  \end{frame}
 
   % Adding outline slide
   \begin{frame}{Outline}

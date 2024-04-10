@@ -78,30 +78,15 @@
   \directlua{ meetingInfo.set("#1") }
 }
 
-%% Create formatted title frame with above functions
-\newcommand{\titleframe}
+% Create new title
+\renewcommand{\maketitle}[4]
 {
-  \begin{frame}[plain]
-    % Mines logo
-    \begin{figure}
-      \begin{textblock*}{2.05cm}(0.065\paperwidth,0.38\paperheight)
-        \includegraphics[width=2.05cm]{mines-2018}
-      \end{textblock*}
-    \end{figure}
-    % CGEM logo
-    \begin{figure}
-      \begin{textblock*}{2.85cm}(0.77\paperwidth,0.35\paperheight)
-        \includegraphics[width=2.85cm]{cgem-logo}
-      \end{textblock*}
-    \end{figure}
-    % Title
-    \begin{center}
-      \directlua{ title.titleframe() } \\ [1cm]
-      \directlua{ authors.titleframe() } \\ [1.2cm]
-      \directlua{ affiliations.titleframe() } \\ [2mm]
-      \directlua{ meetingInfo.titleframe() } \\ [-5mm]
-    \end{center}
-  \end{frame}
+  \begin{center}
+    \directlua{ title.titleframe() } \\ [#1]
+    \directlua{ authors.titleframe() } \\ [#2]
+    \directlua{ affiliations.titleframe() } \\ [#3]
+    \directlua{ meetingInfo.titleframe() } \\ [#4]
+  \end{center}
 }
 
 %------------------------------------------
