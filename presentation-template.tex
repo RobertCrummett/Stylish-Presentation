@@ -2,29 +2,31 @@
 \usepackage{cgem-presentation} % CGEM Presentation Settings
 
 %------------------------------------------
+%% Link with directory structure
 % Set figures path
 \graphicspath{{./Figure}} % Directory containing all figures
 
-%------------------------------------------
 % Set bibliography directory
 \setbibliographypath{Bib}
 
 %------------------------------------------
 %% Title
 
-% Title and Authors
+% Affilations, Meeting information, etc
+\newcommand{\cgemTitle}{Center for Gravity, Electrical \\& Magnetic Studies (CGEM)}
+\newcommand{\csmTitle}{Department of Geophysics --- Colorado School of Mines}
+\newcommand{\meetingTitle}{Conference --- Meeting Name --- Location}
+\newcommand{\sessionTitle}{Session Information (if available)}
+\newcommand{\daytimeTitle}{Date --- Time}
+\newcommand{\cgemQuestion}{Center for Gravity, Electrical \\& Magnetic Studies}
+\newcommand{\csmQuestion}{Colorado School of Mines}
+
+% Title frame specifications
 \title{Do Not Read Title to Audience}
 \author{R. Nate Crummett*;Yaoguo Li}
-
-% Affilations, Meeting information, etc
-\newcommand{\cgemMark}{Center for Gravity, Electrical \\& Magnetic Studies (CGEM)}
-\newcommand{\csmMark}{Department of Geophysics --- Colorado School of Mines}
-\newcommand{\meetingMark}{Conference \\/ Meeting Name \\/ Location}
-\newcommand{\sessionMark}{Session Information (if available)}
-\newcommand{\daytimeMark}{Date \\/ Time}
-
-\affiliations{\cgemMark;\csmMark}
-\meeting{\meetingMark;\sessionMark;\daytimeMark}
+\affiliations{\cgemTitle;\csmTitle}{\cgemQuestion;\csmQuestion}
+\meeting{\meetingTitle;\sessionTitle;\daytimeTitle}
+\contactInfo{robert\\_crummett@mines.com}
 
 %------------------------------------------
 %% Presentation
@@ -114,7 +116,8 @@
       \end{textblock*}
     \end{figure}
   \end{frame}
- 
+
+  % Acknowledgements
   \begin{frame}{Acknowledgments}
     \vspace{-2cm}
     \begin{enumerate}
@@ -128,8 +131,24 @@
     \end{enumerate}
   \end{frame}
 
-  \questionslide
-  
+  % Question slide
+  \begin{frame}[plain]
+    % Mines logo
+    \begin{figure}
+      \begin{textblock*}{1cm}(0.065\paperwidth,0.03\paperheight)
+        \includegraphics[width=1cm]{mines-2018}
+      \end{textblock*}
+    \end{figure}
+    % CGEM logo
+    \begin{figure}
+      \begin{textblock*}{1cm}(0.87\paperwidth,0.02\paperheight)
+        \includegraphics[width=1.3cm]{cgem-logo}
+      \end{textblock*}
+    \end{figure}
+    % Question slide text
+    \makequestion
+  \end{frame}
+
   \begin{frame}[allowframebreaks, plain]{References}
     \printbibliography
   \end{frame}

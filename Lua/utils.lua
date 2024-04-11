@@ -5,6 +5,7 @@ function tabulateString(str, tab, sep)
     table.insert(tab, index, s)
     index = index + 1
   end
+  return tab
 end
 
 return {

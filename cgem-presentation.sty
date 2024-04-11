@@ -18,8 +18,10 @@
 \directlua{authors = require("Lua.authors")} % presentation authors
 \directlua{affiliations = require("Lua.affiliations")} % affiliations - CGEM, CSM, GMRC, etc
 \directlua{meetingInfo = require("Lua.meetingInfo") } % meeting, conference, session, date, etc
+\directlua{contact = require("Lua.contact") } % presentation title
 
 %-----------------------------------------
+%% Global TeX Settings
 % CGEM light blue color
 \definecolor{cgemblue}{HTML}{90C5FB}
 
@@ -50,27 +52,39 @@
 }
 
 %------------------------------------------
-%% Title page functionality
+%% Title page 
 
-% Title, Rename to something informative but not too long
+% Title
 \renewcommand{\title}[1]{ \directlua{ title.set("#1") } }
 
 % Slide authors
-\renewcommand{\author}[1]{ \directlua{ authors.set("#1") } }
+\renewcommand{\author}[1]{
+  \directlua{ authors.set("title", "#1") }
+  \directlua{ authors.set("question", "#1") }
+}
 
-% CGEM Affiliation line
-\newcommand{\affiliations}[1]{ \directlua{ affiliations.set("#1") } }
+% Affiliations line
+\newcommand{\affiliations}[2]
+{
+  \directlua{ affiliations.set("title", "#1") }
+  \directlua{ affiliations.set("question", "#2") }
+}
 
 % Meeting information, date, session #, etc
 \newcommand{\meeting}[1]{\directlua{ meetingInfo.set("#1") } }
 
-% Create new title
+% Autho contact information
+\newcommand{\contactInfo}[1]{ \directlua{ contact.set("#1") } }
+
+% Create new title, arguments control spacing of different sections on frame
+% if you desire th change text size, color, linespacing etc, you will need to
+% track them down in the Lua directory!
 \renewcommand{\maketitle}[4]
 {
   \begin{center}
     \directlua{ title.titleframe() } \\ [#1]
-    \directlua{ authors.titleframe() } \\ [#2]
-    \directlua{ affiliations.titleframe() } \\ [#3]
+    \directlua{ authors.print("title") } \\ [#2]
+    \directlua{ affiliations.print("title") } \\ [#3]
     \directlua{ meetingInfo.titleframe() } \\ [#4]
   \end{center}
 }
@@ -96,7 +110,7 @@
 %------------------------------------------
 %% Frame title format
 
-% Frame title
+% Frame titles centers, Huge and white by default
 \setbeamertemplate{frametitle}[default][center]
 \setbeamerfont*{frametitle}{size=\Huge}
 \setbeamercolor{frametitle}{fg=white}
@@ -109,38 +123,48 @@
 {
   \color{white} \noindent \makebox[\linewidth]{\rule{\textwidth}{0.7pt}}
 }
-\newcommand{\questionslide}
+%\newcommand{\questionslide}
+%{
+%  \begin{frame}[plain]
+%    \begin{center}
+%      % Mines logo
+%      \begin{figure}
+%        \begin{textblock*}{1cm}(0.065\paperwidth,0.03\paperheight)
+%          \includegraphics[width=1cm]{mines-2018}
+%        \end{textblock*}
+%      \end{figure}
+%      % CGEM logo
+%      \begin{figure}
+%        \begin{textblock*}{1cm}(0.87\paperwidth,0.02\paperheight)
+%          \includegraphics[width=1.3cm]{cgem-logo}
+%        \end{textblock*}
+%      \end{figure}
+%      % Questions slide
+%      \directlua{ affiliations.print("question") } \\[-2mm]
+%      \whitebar \\[1.7cm]
+%      \color{cgemblue}
+%      \LARGE
+%      Thank You \\
+%      Questions? \\[1.82cm]
+%      \whitebar \\
+%      \directlua{ authors.print("question") }
+%    \end{center}
+%  \end{frame}
+%}
+
+\newcommand{\makequestion}
 {
-  \begin{frame}[plain]
-    \begin{center}
-      % Mines logo
-      \begin{figure}
-        \begin{textblock*}{1cm}(0.065\paperwidth,0.03\paperheight)
-          \includegraphics[width=1cm]{mines-2018}
-        \end{textblock*}
-      \end{figure}
-      % CGEM logo
-      \begin{figure}
-        \begin{textblock*}{1cm}(0.87\paperwidth,0.02\paperheight)
-          \includegraphics[width=1.3cm]{cgem-logo}
-        \end{textblock*}
-      \end{figure}
-      % Questions slide
-      \color{cgemblue}
-      \footnotesize
-      \vspace{-8mm}
-      Colorado School of Mines \\[2mm]
-      \Large
-      Center for Gravity, Electrical \& Magnetic Studies \\[-2mm]
-      \whitebar \\[1.7cm]
-      \color{cgemblue}
-      \LARGE
-      Thank You \\
-      Questions? \\[1.82cm]
-      \whitebar \\
-      \directlua{ authors.questionframe() }
-    \end{center}
-  \end{frame}
+  \begin{center}
+    \vspace{-8mm} 
+    \directlua{ affiliations.print("question") } \\[-2mm]
+    \whitebar \\ [1.75cm]
+    \color{cgemblue}
+    \LARGE
+    Thank You \\
+    Questions? \\[1.82cm]
+    \whitebar \\[1mm]
+    \directlua{ authors.print("question") }
+  \end{center}
 }
 
 %-------------------------------------------

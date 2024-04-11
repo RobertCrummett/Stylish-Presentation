@@ -4,32 +4,45 @@ utils = require("Lua.utils")
 affiliationTable = {}
 
 -- Function sets all affiliations in table
-function setGlobalAffiliations(affiliationString)
+function setAffiliation(frame, affiliationString)
   local delimiter = ";"
-  utils.tabulateString(affiliationString, affiliationTable, delimiter)
+  affiliationTable[frame] = utils.tabulateString(affiliationString, {}, delimiter)
 end
 
 -- Function prints affiliations to title frame 
-function printTitleAffiliations()
-  -- Get global affiliations table size
-	local numAffiliations = #affiliationTable
+function printAffiliationTitleFrame(tab)
+	local numAffiliations = #tab
 
-  if numAffiliations == 0 then -- No affiliations
-    return 
-  elseif numAffiliations == 1 then -- One main affiliation
-    tex.print("\\textit{ \\textcolor{cgemblue}{ " .. 
-      "{ \\Large " .. affiliationTable[1] .. " }}}")
-  else -- More than one affiliation
-    tex.print("\\textit{ \\textcolor{cgemblue}{ " .. 
-      "{ \\Large " .. affiliationTable[1] .. " } \\")
-    for index = 2, numAffiliations do
-      tex.print("{ \\large " .. affiliationTable[index] .. " }"	)
-      if index ~= numAffiliations then
-        tex.print(" \\ ")
-      end
-	  end
-	  tex.print(" }}")
+  -- Print the first affiliation big
+  tex.print("\\textit{ \\textcolor{cgemblue}{ " .. "{ \\Large " .. tab[1] .. " } \\")
+  -- Fors all subsequent affiliations, print small below
+  for index = 2, numAffiliations do
+    tex.print("{ \\large " .. tab[index] .. " }"	)
+    if index ~= numAffiliations then
+      tex.print(" \\ ")
+    end
+  end
+  tex.print(" }}")
+end
+
+-- Function prints affiliations to question frame 
+function printAffiliationQuestionFrame(tab)
+  -- Print the second affiliation small on the top of the page
+  tex.print("\\textcolor{cgemblue}{")
+  tex.print("{ \\footnotesize " .. tab[2] .. "} \\\\[2mm]")
+  -- Then print the first affiliation big
+  tex.print("{ \\Large " .. tab[1] .. "}}")
+end
+
+-- Function prints affiliation information to frame 'frame'
+function printAffiliation(frame)
+  local tab = affiliationTable[frame]
+
+  if frame == "title" then
+    printAffiliationTitleFrame(tab)
+  elseif frame == "question" then
+    printAffiliationQuestionFrame(tab)
   end
 end
 
-return { set = setGlobalAffiliations, titleframe = printTitleAffiliations }
+return { set = setAffiliation, print = printAffiliation }
