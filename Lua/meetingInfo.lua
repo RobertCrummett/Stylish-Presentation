@@ -4,20 +4,20 @@ utils = require("Lua.utils")
 meetingTable = {}
 
 -- Function sets all meeting information in table
-function setGlobalMeetingInfo(meetingString)
+function setMeeting(frame, meetingString)
   local delimiter = ";"
-  utils.tabulateString(meetingString, meetingTable, delimiter)
+  meetingTable[frame] = utils.tabulateString(meetingString, {}, delimiter)
 end
 
 -- Function prints meeting information
-function printTitleMeetingInfo()
+function printMeetingTitleFrame(tab)
   -- Get global meeting table size
-	local numMeeting = #meetingTable
+	local numMeeting = #tab
 
   -- Print title meeting in default color, normal size, italics
   tex.print("\\textit{ \\normalsize ")
-  for index, m in ipairs(meetingTable) do
-    tex.print( m )
+  for index, m in ipairs(tab) do
+    tex.print(m)
     if index ~= numMeeting then
       tex.print(" \\\\ [-1mm] ")
     end
@@ -25,4 +25,12 @@ function printTitleMeetingInfo()
   tex.print(" }")
 end
 
-return { set = setGlobalMeetingInfo, titleframe = printTitleMeetingInfo }
+function printMeeting(frame)
+  local tab = meetingTable[frame]
+
+  if frame == "title" then
+    printMeetingTitleFrame(tab)
+  end
+end
+
+return { set = setMeeting, print = printMeeting }

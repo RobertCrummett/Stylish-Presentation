@@ -4,9 +4,9 @@ utils = require("Lua.utils")
 contactTable = {}
 
 -- Function sets all contact information in table
-function setGlobalContact(contactString)
+function setContact(contactString)
   local delimiter = ";"
   utils.tabulateString(contactString, contactTable, delimiter)
 end
 
-return { set = setGlobalContact }
+return { set = setContact }

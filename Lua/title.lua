@@ -4,20 +4,20 @@ utils = require("Lua.utils")
 titleTable = {}
 
 -- Function sets all titles in table
-function setGlobalTitle(titleString)
+function setTitle(frame, titleString)
   local delimiter = ";"
-  utils.tabulateString(titleString, titleTable, delimiter)
+  titleTable[frame] = utils.tabulateString(titleString, {}, delimiter)
 end
 
 -- Function prints title to title frame
-function printTitle()
+function printTitleTitleFrame(tab)
   -- Get global title table size
-	local numTitle = #titleTable
+	local numTitle = #tab
 
   -- Print title meeting in default color, normal size, italics
   tex.print("{ \\Huge ")
-  for index, t in ipairs(titleTable) do
-    tex.print( t )
+  for index, t in ipairs(tab) do
+    tex.print(t)
     if index ~= numTitle then
       tex.print(" \\\\ ")
     end
@@ -25,7 +25,15 @@ function printTitle()
   tex.print(" }")
 end
 
+function printTitle(frame)
+  local tab = titleTable[frame]
+
+  if frame == "title" then
+    printTitleTitleFrame(tab)
+  end
+end
+
 return {
-  set = setGlobalTitle,
-  titleframe = printTitle,
+  set = setTitle,
+  print = printTitle,
 }
