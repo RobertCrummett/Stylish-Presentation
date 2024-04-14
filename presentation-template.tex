@@ -36,7 +36,7 @@
   \begin{frame}[plain]
     % Mines logo
     \begin{figure}
-      \begin{textblock*}{2.05cm}(0.065\paperwidth,0.38\paperheight)
+      \begin{textblock*}{2.05cm}(0.08\paperwidth,0.38\paperheight)
         \includegraphics[width=2.05cm]{mines-2018}
       \end{textblock*}
     \end{figure}
@@ -105,8 +105,8 @@
     Try another citation style! \cite{doi:10.1190/geo2020-0729.1}
   \end{frame}
 
-  % Adding figures
-  \begin{frame}{Figure Demo}
+  % Adding & citing figures
+  \begin{frame}{Figure Demo --- Citations}
     \begin{figure}
       \begin{textblock*}{0.7\paperwidth}(0.15\paperwidth,0.18\paperheight)
         % Graphic
@@ -115,6 +115,31 @@
         \citefig{WEIHERMANN2021104682}
       \end{textblock*}
     \end{figure}
+  \end{frame}
+
+  % GMT figures, parameters in gmt.conf file to play with
+  \begin{frame}
+    \begin{figure}
+      \begin{textblock*}{0.7\paperwidth}(-0.08\paperwidth,0.05\paperheight)
+        % Graphic
+        \includegraphics[width=0.5\paperwidth]{mag}
+      \end{textblock*}
+    \end{figure}
+    \begin{textblock*}{0.5\paperwidth}(0.55\paperwidth,0.05\paperheight)
+      \Huge
+      \,\,\,Ideas for GMT
+      \begin{enumerate}
+        \item PS\_PAGE\_COLOR
+        \item MAP\_FRAME\_PEN
+        \item MAP\_DEFAULT\_PEN
+        \item FONT\_TITLE
+        \item FONT\_ANNOT
+        \item FONT\_LABEL
+        \item -\hspace{0.1mm}-PARAM //
+          (override *.conf)
+      \end{enumerate}
+    \end{textblock*}
+
   \end{frame}
 
   % Acknowledgements
