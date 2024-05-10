@@ -31,7 +31,7 @@
 % Hyperlink settings
 \hypersetup{
   colorlinks=true,
-  citecolor=cgemblue,
+  citecolor=magenta,
   linkcolor=cgemblue,
   urlcolor=magenta,
 } % Link to corresponding author
@@ -46,9 +46,11 @@
 % Page numbering
 \setbeamertemplate{footline}
 {
-  \hspace{0.97\pagewidth}
-  \textcolor{cgemblue}{\large \insertframenumber}
-  \vspace{2mm}
+  \begin{flushright}
+    \textcolor{cgemblue}{\large \insertframenumber}
+    \hspace{1mm}
+    \vspace{-1mm}
+  \end{flushright}
 }
 
 %------------------------------------------
