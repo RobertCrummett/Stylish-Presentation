@@ -85,12 +85,19 @@
         }
         \hspace{1mm}
         \widetilde{\mathbf{R}}
+      \logvar{u}{$\\hat{\\mathit{u}}$}{Inducing magnetic field direction unit vector}{}
+      \logvar{v}{$\\hat{\\mathit{v}}$}{Induced magnetization direction unit vector}{}
+      \logvar{k}{$\\vec{\\mathit{k}}$}{Gradient operator in wavenumber domain}{}
+      \logvar{p}{$\\mathit{p}$}{Wavenumber in X direction}{1 / meters}
+      \logvar{q}{$\\mathit{q}$}{Wavenumber in Y direction}{1 / meters}
+      \logvar{t}{$\\widetilde{\\mathbf{T}}$}{Observed total-field anomaly in the wavenumber domain}{nT}
+      \logvar{r}{$\\widetilde{\\mathbf{R}}$}{Reduction to Pole (RTP) in the wavenumber domain}{nT}
     \end{equation*}
-    
+   
     \vspace{1cm}
     Fields are \textcolor{SecondColor}{rotated} as if they were vertical (ie, Pole)
   \end{frame}
-
+  
   % Adding citations
   \begin{frame}{Citations Managed by Bib\TeX}
     \LARGE
@@ -174,22 +181,7 @@
     \makequestion{-8mm}{-2mm}{1.75cm}{1.82cm}{1mm}
   \end{frame}
 
-  \begin{frame}[allowframebreaks, plain]{References}
-    \printbibliography
-  \end{frame}
-
-  
-  \begin{frame}[allowframebreaks]
-    \logvar{v}{$\\vec{V}$}{The letter v}{nT}
-    \logvar{a}{A}{The letter a}{}
-    \logvar{f}{f}{The letter f}{nT}
-    \logvar{g}{g}{The letter g}{}
-
-    \begin{longtable}{c|c|c}
-      one & two & three \\
-      \hline \hline
-      \printvar
-    \end{longtable}
-  \end{frame}
+  \BibliographyFrame
+  \VariableFrame
 
 \end{document}

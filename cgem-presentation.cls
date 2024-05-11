@@ -181,7 +181,7 @@
 \setbeamertemplate{frametitle continuation}{}
 
 %--------------------------------------------
-%% Citaions
+%% Citations
 
 % Inline citation settings
 \renewcommand*{\citesetup}
@@ -201,9 +201,32 @@
   \end{flushright}
 }
 
+% Bibliography frame
+\newcommand{\BibliographyFrame}
+{
+  \begin{frame}[allowframebreaks, plain]{References}
+    \printbibliography
+  \end{frame}
+}
+
 %--------------------------------------------
-%% Variables
+%% Variables & Explanation of Equations
 
 % Log variables
 \newcommand{\logvar}[4]{ \directlua{ cgem.variable.log("#1", "#2", "#3", "#4") } }
-\newcommand{\printvar}{ \directlua{ cgem.variable.print() } }
+
+% Variable table frame
+\newcommand{\VariableFrame}
+{
+  \begin{frame}[allowframebreaks, plain]{Explanation of Equations}
+    \Large
+    \begin{longtable}{c{2cm}|c|c}
+      \label{tab:variable}
+      \textcolor{SecondColor}{Variable} & 
+      \textcolor{SecondColor}{Description} & 
+      \textcolor{SecondColor}{Units} \\
+      \hline \hline
+      \directlua{ cgem.variable.print() }
+    \end{longtable}
+  \end{frame} 
+}
