@@ -14,7 +14,7 @@ function printVariables()
   table.sort(a)
   for i, n in ipairs(a) do
     line = VARIABLES[n]
-    tex.print(string.format("%s & %s & %s \\\\ ", line[1], line[2], line[3]))
+    tex.print(string.format(" %s & %s & %s \\\\ ", line[1], line[2], line[3]))
   end
 end
 

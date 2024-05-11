@@ -8,10 +8,12 @@
 
 % Preamble
 \RequirePackage{amsmath, amsfonts, amssymb} % Math
+\RequirePackage{array} % array strech
 \RequirePackage[backend=biber, style=authoryear-comp]{biblatex} % Bibliogrpahy, change style if you prefer
 \RequirePackage{fontspec} % Fonts --- If this fails to compile, use XeLaTeX or LuaTeX
 \RequirePackage{graphicx} % Figures
 \RequirePackage{hyperref} % Links
+\RequirePackage{longtable} % explanation of equations table
 \RequirePackage[absolute,overlay]{textpos} % Figure placement
 \RequirePackage{xcolor} % Colors
 
@@ -216,16 +218,17 @@
 \newcommand{\logvar}[4]{ \directlua{ cgem.variable.log("#1", "#2", "#3", "#4") } }
 
 % Variable table frame
+\newcolumntype{x}[1]{>{\centering\arraybackslash\hspace{0pt}}p{#1}}
 \newcommand{\VariableFrame}
 {
-  \begin{frame}[allowframebreaks, plain]{Explanation of Equations}
+  \begin{frame}[allowframebreaks, plain]
+    \LARGE
+    \textcolor{SecondColor}{Explanation of Equations} \\
+    \vspace{-1mm}
     \Large
-    \begin{longtable}{c{2cm}|c|c}
-      \label{tab:variable}
-      \textcolor{SecondColor}{Variable} & 
-      \textcolor{SecondColor}{Description} & 
-      \textcolor{SecondColor}{Units} \\
-      \hline \hline
+    \renewcommand*{\arraystretch}{1.2}
+    \begin{longtable}{x{1cm}|x{10cm}|x{2cm}}
+      \hline && \\[-5mm]
       \directlua{ cgem.variable.print() }
     \end{longtable}
   \end{frame} 
