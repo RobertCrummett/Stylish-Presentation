@@ -15,7 +15,7 @@ function printAuthorsTitleFrame(tab)
 	local numAuthors = #tab
 
   -- In index order print authors
-	tex.print("\\textcolor{cgemblue}{\\LARGE ")
+	tex.print("\\textcolor{SecondColor}{\\LARGE ")
 	for index, a in ipairs(tab) do
     -- Hyperlink title page and authors in question slide
 		tex.print("\\hyperlink{" .. index .. "}{" .. a .. "}")
@@ -33,7 +33,7 @@ function printAuthorsQuestionFrame(tab)
   local numContact = #contactTable
 
   -- In index order print authors
-	tex.print("\\textcolor{cgemblue}{\\small ")
+	tex.print("\\textcolor{SecondColor}{\\small ")
 	for index, a in ipairs(tab) do
     -- Hyperlink title page and authors in question slide
 		tex.print("\\hypertarget{" .. index .. "}{" .. a .. "}")

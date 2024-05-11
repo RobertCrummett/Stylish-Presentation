@@ -1,5 +1,4 @@
-\documentclass[aspectratio=169]{beamer}
-\usepackage{cgem-presentation} % CGEM Presentation Settings
+\documentclass[light]{cgem-presentation}
 
 %------------------------------------------
 %% Link with directory structure
@@ -7,11 +6,10 @@
 \graphicspath{{./Figure}}
 
 % Set bibliography directory
-\setbibliographypath{Bib}
+\bibliographypath{Bib}
 
 %------------------------------------------
 %% Title
-
 % Affilations, Meeting information, etc
 \newcommand{\cgemTitle}{Center for Gravity, Electrical \\& Magnetic Studies (CGEM)}
 \newcommand{\csmTitle}{Department of Geophysics --- Colorado School of Mines}
@@ -67,17 +65,19 @@
  
   % Adding title to slide
   \begin{frame}{All Slides Should Be Titled}
+    \LARGE 
+    Hello world!
   \end{frame}
 
   % Add equations to slides
   \begin{frame}{Adding Equations}
     \LARGE
-    Reduction To Pole (RTP) is a \textcolor{cgemblue}{rotation} \\[5mm]
+    Reduction To Pole (RTP) is a \textcolor{SecondColor}{rotation} \\[5mm]
     
     % RTP operator
     \begin{equation*}
       \widetilde{\mathbf{T}} =
-        \textcolor{cgemblue}
+        \textcolor{SecondColor}
         {
           \frac{(\hat{\mathit{u}} \cdot \vec{\mathit{k}})
           (\hat{\mathit{v}} \cdot \vec{\mathit{k}})}
@@ -88,7 +88,7 @@
     \end{equation*}
     
     \vspace{1cm}
-    Fields are \textcolor{cgemblue}{rotated} as if they were vertical (ie, Pole)
+    Fields are \textcolor{SecondColor}{rotated} as if they were vertical (ie, Pole)
   \end{frame}
 
   % Adding citations

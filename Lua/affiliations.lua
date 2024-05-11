@@ -14,7 +14,7 @@ function printAffiliationTitleFrame(tab)
 	local numAffiliations = #tab
 
   -- Print the first affiliation big
-  tex.print("\\textit{ \\textcolor{cgemblue}{ " .. "{ \\Large " .. tab[1] .. " } \\")
+  tex.print("\\textit{ \\textcolor{SecondColor}{ " .. "{ \\Large " .. tab[1] .. " } \\")
   -- Fors all subsequent affiliations, print small below
   for index = 2, numAffiliations do
     tex.print("{ \\large " .. tab[index] .. " }"	)
@@ -28,7 +28,7 @@ end
 -- Function prints affiliations to question frame 
 function printAffiliationQuestionFrame(tab)
   -- Print the second affiliation small on the top of the page
-  tex.print("\\textcolor{cgemblue}{")
+  tex.print("\\textcolor{SecondColor}{")
   tex.print("{ \\footnotesize " .. tab[2] .. "} \\\\[2mm]")
   -- Then print the first affiliation big
   tex.print("{ \\Large " .. tab[1] .. "}}")

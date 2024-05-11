@@ -1,17 +1,21 @@
 %% CGEM Presentation Package
-\ProvidesPackage{cgem-presentation}
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesClass{cgem-presentation}[2024/05/10 CGEM Presentations]
 
 %----------------------------------------
 %% CGEM Presentation Package Dependencies
-% Preamble
-\usepackage{amsmath, amsfonts, amssymb} % Math
-\usepackage[backend=biber, style=alphabetic]{biblatex} % Bibliogrpahy, change style if you prefer
-\usepackage{fontspec} % Fonts --- If this fails to compile, use XeLaTeX or LuaTeX
-\usepackage{graphicx} % Figures
-\usepackage{hyperref} % Links
-\usepackage[absolute,overlay]{textpos} % Figure placement
-\usepackage{xcolor} % Colors
+\LoadClass[aspectratio=169]{beamer}
 
+% Preamble
+\RequirePackage{amsmath, amsfonts, amssymb} % Math
+\RequirePackage[backend=biber, style=authoryear-comp]{biblatex} % Bibliogrpahy, change style if you prefer
+\RequirePackage{fontspec} % Fonts --- If this fails to compile, use XeLaTeX or LuaTeX
+\RequirePackage{graphicx} % Figures
+\RequirePackage{hyperref} % Links
+\RequirePackage[absolute,overlay]{textpos} % Figure placement
+\RequirePackage{xcolor} % Colors
+
+%-----------------------------------------
 % Linking Lua scripts
 \directlua{bib = require("Lua.bib")} % bibliography
 \directlua{title = require("Lua.title")} % presentation title
@@ -21,10 +25,25 @@
 \directlua{contact = require("Lua.contact") } % presentation title
 
 %-----------------------------------------
-%% Global TeX Settings
-% CGEM light blue color
-\definecolor{highlight}{HTML}{FFC000}
+%% Global TeX Settings and Options Processing
+
+% Presentation color options
+\definecolor{highlight}{HTML}{FFC000} % Highlight color
 \definecolor{cgemblue}{HTML}{90C5FB} % Light CGEM blue
+
+\DeclareOption{dark}{
+  \colorlet{ZeroColor}{black}
+  \colorlet{FirstColor}{white}
+  \colorlet{SecondColor}{cgemblue}
+  \colorlet{ThirdColor}{cgemblue!40!red}
+}
+\DeclareOption{light}{
+  \colorlet{ZeroColor}{white}
+  \colorlet{FirstColor}{black}
+  \colorlet{SecondColor}{blue}
+  \colorlet{ThirdColor}{red}
+}
+\ProcessOptions\relax
 
 % Font Settings
 \setsansfont{Arial}
@@ -32,14 +51,14 @@
 % Hyperlink settings
 \hypersetup{
   colorlinks=true,
-  citecolor=cgemblue,
-  linkcolor=cgemblue,
-  urlcolor=magenta,
+  citecolor=ThirdColor,
+  linkcolor=SecondColor,
+  urlcolor=ThirdColor,
 } % Link to corresponding author
 
 % Background and default text color
-\setbeamercolor{background canvas}{bg = black}
-\setbeamercolor{normal text}{fg = white}\usebeamercolor*{normal text}
+\setbeamercolor{background canvas}{bg = ZeroColor}
+\setbeamercolor{normal text}{fg = FirstColor}\usebeamercolor*{normal text}
 
 % Turn off Beamer navigation buttons
 \setbeamertemplate{navigation symbols}{}
@@ -48,7 +67,7 @@
 \setbeamertemplate{footline}
 {
   \begin{flushright}
-    \textcolor{cgemblue}{\large \insertframenumber}
+    \textcolor{SecondColor}{\large \insertframenumber}
     \hspace{1mm}
     \vspace{-1mm}
   \end{flushright}
@@ -96,19 +115,19 @@
 %% Enumeration / Itemize  / List Settings, ie, Bullet Point Lists
 
 % Base level
-\setbeamertemplate{enumerate item}{\LARGE \color{cgemblue} \textbullet}
+\setbeamertemplate{enumerate item}{\LARGE \color{SecondColor} \textbullet}
 \setbeamerfont*{itemize/enumerate body}{size=\LARGE}
-\setbeamercolor{itemize/enumerate body}{fg=cgemblue}
+\setbeamercolor{itemize/enumerate body}{fg=SecondColor}
 
 % First Level
-\setbeamertemplate{enumerate subitem}{\Large \color{white} --}
+\setbeamertemplate{enumerate subitem}{\Large \color{FirstColor} --}
 \setbeamerfont*{itemize/enumerate subbody}{size=\Large}
-\setbeamercolor{itemize/enumerate subbody}{fg=white}
+\setbeamercolor{itemize/enumerate subbody}{fg=FirstColor}
 
 % Second Level -- only use in emergencies!!
-\setbeamertemplate{enumerate subsubitem}{\large \color{cgemblue} \textbullet}
+\setbeamertemplate{enumerate subsubitem}{\large \color{SecondColor} \textbullet}
 \setbeamerfont*{itemize/enumerate subsubbody}{size=\large}
-\setbeamercolor{itemize/enumerate subsubbody}{fg=cgemblue}
+\setbeamercolor{itemize/enumerate subsubbody}{fg=SecondColor}
 
 %------------------------------------------
 %% Frame title format
@@ -116,25 +135,25 @@
 % Frame titles centers, Huge and white by default
 \setbeamertemplate{frametitle}[default][center]
 \setbeamerfont*{frametitle}{size=\Huge}
-\setbeamercolor{frametitle}{fg=white}
+\setbeamercolor{frametitle}{fg=FirstColor}
 
 %------------------------------------------
 %% Question Slide
 
 % Print a horizontal while bar across the text width of frame
-\newcommand{\whitebar}{ \color{white} \noindent \makebox[\linewidth]{\rule{\textwidth}{0.7pt}} }
+\newcommand{\HorizontalBar}[1]{ \color{#1} \noindent \makebox[\linewidth]{\rule{\textwidth}{0.7pt}} }
 
 \newcommand{\makequestion}[5]
 {
   \begin{center}
     \vspace{#1} 
     \directlua{ affiliations.print("question") } \\ [#2]
-    \whitebar \\ [#3]
-    \color{cgemblue}
+    \HorizontalBar{FirstColor} \\ [#3]
+    \color{SecondColor}
     \LARGE
     Thank You \\
     Questions? \\ [#4]
-    \whitebar \\ [#5]
+    \HorizontalBar{FirstColor} \\ [#5]
     \directlua{ authors.print("question") }
   \end{center}
 }
@@ -143,20 +162,29 @@
 %% Bibliography Style
 
 % Linking bibliography folder
-\newcommand{\setbibliographypath}[1]{ \directlua{ bib.make("#1") } }
+\newcommand{\bibliographypath}[1]{ \directlua{ bib.make("#1") } }
 
 % Biblography colors
-\setbeamercolor*{bibliography entry title}{fg=white}
-\setbeamercolor*{bibliography entry location}{fg=white}
-\setbeamercolor*{bibliography entry note}{fg=white}
-\setbeamercolor*{bibliography entry author}{fg=white}
-\setbeamercolor*{bibliography item}{fg=cgemblue}
+\setbeamercolor*{bibliography entry title}{fg=FirstColor}
+\setbeamercolor*{bibliography entry location}{fg=FirstColor}
+\setbeamercolor*{bibliography entry note}{fg=FirstColor}
+\setbeamercolor*{bibliography entry author}{fg=FirstColor}
+\setbeamercolor*{bibliography item}{fg=SecondColor}
 
 % No numbering on continued reference slides
 \setbeamertemplate{frametitle continuation}{}
 
 %--------------------------------------------
 %% Citaions
+
+% Inline citation settings
+\renewcommand*{\citesetup}
+{
+  \itshape
+  \color{ThirdColor}
+  \small
+  \biburlsetup
+}
 
 % Figure citation beneath bottom right hand corner of image, integrates with BibTeX
 \newcommand{\citefig}[1]
