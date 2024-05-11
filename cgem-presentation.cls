@@ -17,12 +17,14 @@
 
 %-----------------------------------------
 % Linking Lua scripts
-\directlua{bib = require("Lua.bib")} % bibliography
-\directlua{title = require("Lua.title")} % presentation title
-\directlua{authors = require("Lua.authors")} % presentation authors
-\directlua{affiliations = require("Lua.affiliations")} % affiliations - CGEM, CSM, GMRC, etc
-\directlua{meetingInfo = require("Lua.meetingInfo") } % meeting, conference, session, date, etc
-\directlua{contact = require("Lua.contact") } % presentation title
+\directlua{
+  bib = require("Lua.bib")
+  title = require("Lua.title")
+  authors = require("Lua.authors")
+  affiliations = require("Lua.affiliations")
+  meetingInfo = require("Lua.meetingInfo")
+  contact = require("Lua.contact")
+} 
 
 %-----------------------------------------
 %% Global TeX Settings and Options Processing
