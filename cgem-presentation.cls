@@ -16,15 +16,8 @@
 \RequirePackage{xcolor} % Colors
 
 %-----------------------------------------
-% Linking Lua scripts
-\directlua{
-  bib = require("Lua.bib")
-  title = require("Lua.title")
-  authors = require("Lua.authors")
-  affiliations = require("Lua.affiliations")
-  meetingInfo = require("Lua.meetingInfo")
-  contact = require("Lua.contact")
-} 
+% Linking CGEM Lua package
+\directlua{ cgem = require("cgem-presentation") } 
 
 %-----------------------------------------
 %% Global TeX Settings and Options Processing
@@ -79,26 +72,26 @@
 %% Title page 
 
 % Title
-\renewcommand{\title}[1]{ \directlua{ title.set("title", "#1") } }
+\renewcommand{\title}[1]{ \directlua{ cgem.title.set("title", "#1") } }
 
 % Slide authors
 \renewcommand{\author}[1]{
-  \directlua{ authors.set("title", "#1") }
-  \directlua{ authors.set("question", "#1") }
+  \directlua{ cgem.authors.set("title", "#1") }
+  \directlua{ cgem.authors.set("question", "#1") }
 }
 
 % Affiliations line
 \newcommand{\affiliations}[2]
 {
-  \directlua{ affiliations.set("title", "#1") }
-  \directlua{ affiliations.set("question", "#2") }
+  \directlua{ cgem.affiliations.set("title", "#1") }
+  \directlua{ cgem.affiliations.set("question", "#2") }
 }
 
 % Meeting information, date, session #, etc
-\newcommand{\meeting}[1]{\directlua{ meetingInfo.set("title", "#1") } }
+\newcommand{\meeting}[1]{\directlua{ cgem.meetingInfo.set("title", "#1") } }
 
 % Autho contact information
-\newcommand{\contactInfo}[1]{ \directlua{ contact.set("#1") } }
+\newcommand{\contactInfo}[1]{ \directlua{ cgem.contact.set("#1") } }
 
 % Create new title, arguments control spacing of different sections on frame
 % if you desire th change text size, color, linespacing etc, you will need to
@@ -106,10 +99,16 @@
 \renewcommand{\maketitle}[4]
 {
   \begin{center}
-    \directlua{ title.print("title") } \\ [#1]
-    \directlua{ authors.print("title") } \\ [#2]
-    \directlua{ affiliations.print("title") } \\ [#3]
-    \directlua{ meetingInfo.print("title") } \\ [#4]
+    { \Huge \directlua{ cgem.title.print("title") }} \\ [#1]
+    \textcolor{SecondColor}{
+      \LARGE
+      \directlua{ cgem.authors.print("title") }
+    } \\ [#2]
+    \textit{
+      \textcolor{SecondColor}{ \directlua{ cgem.affiliations.print("title") } } \\ [#3]
+      \normalsize
+      \directlua{ cgem.meetingInfo.print("title") } \\ [#4]
+    }
   \end{center}
 }
 
@@ -143,20 +142,25 @@
 %% Question Slide
 
 % Print a horizontal while bar across the text width of frame
-\newcommand{\HorizontalBar}[1]{ \color{#1} \noindent \makebox[\linewidth]{\rule{\textwidth}{0.7pt}} }
+\newcommand{\HorizontalBar}[1]{ \textcolor{#1}{\noindent \makebox[\linewidth]{\rule{\textwidth}{0.7pt}}} }
 
 \newcommand{\makequestion}[5]
 {
   \begin{center}
     \vspace{#1} 
-    \directlua{ affiliations.print("question") } \\ [#2]
+    \textcolor{SecondColor}{
+      \directlua{ cgem.affiliations.print("question") }
+    } \\ [#2]
     \HorizontalBar{FirstColor} \\ [#3]
-    \color{SecondColor}
     \LARGE
-    Thank You \\
-    Questions? \\ [#4]
+    \textcolor{SecondColor}{
+      Thank You \\
+      Questions?
+    } \\ [#4]
     \HorizontalBar{FirstColor} \\ [#5]
-    \directlua{ authors.print("question") }
+    \color{SecondColor}
+    \small
+    \directlua{ cgem.authors.print("question") }
   \end{center}
 }
 
@@ -196,3 +200,10 @@
     \cite{#1}
   \end{flushright}
 }
+
+%--------------------------------------------
+%% Variables
+
+% Log variables
+\newcommand{\logvar}[4]{ \directlua{ cgem.variable.log("#1", "#2", "#3", "#4") } }
+\newcommand{\printvar}{ \directlua{ cgem.variable.print() } }

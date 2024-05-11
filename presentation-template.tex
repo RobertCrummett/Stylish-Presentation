@@ -1,4 +1,5 @@
 \documentclass[dark]{cgem-presentation}
+\usepackage{longtable}
 
 %------------------------------------------
 % Link to figures directory
@@ -175,6 +176,20 @@
 
   \begin{frame}[allowframebreaks, plain]{References}
     \printbibliography
+  \end{frame}
+
+  
+  \begin{frame}[allowframebreaks]
+    \logvar{v}{$\\vec{V}$}{The letter v}{nT}
+    \logvar{a}{A}{The letter a}{}
+    \logvar{f}{f}{The letter f}{nT}
+    \logvar{g}{g}{The letter g}{}
+
+    \begin{longtable}{c|c|c}
+      one & two & three \\
+      \hline \hline
+      \printvar
+    \end{longtable}
   \end{frame}
 
 \end{document}

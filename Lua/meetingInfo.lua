@@ -15,14 +15,12 @@ function printMeetingTitleFrame(tab)
 	local numMeeting = #tab
 
   -- Print title meeting in default color, normal size, italics
-  tex.print("\\textit{ \\normalsize ")
   for index, m in ipairs(tab) do
     tex.print(m)
     if index ~= numMeeting then
       tex.print(" \\\\ [-1mm] ")
     end
   end
-  tex.print(" }")
 end
 
 function printMeeting(frame)

@@ -15,7 +15,6 @@ function printAuthorsTitleFrame(tab)
 	local numAuthors = #tab
 
   -- In index order print authors
-	tex.print("\\textcolor{SecondColor}{\\LARGE ")
 	for index, a in ipairs(tab) do
     -- Hyperlink title page and authors in question slide
 		tex.print("\\hyperlink{" .. index .. "}{" .. a .. "}")
@@ -23,7 +22,6 @@ function printAuthorsTitleFrame(tab)
 			tex.print(" \\\\[3mm] ")
 		end
 	end
-	tex.print("}")
 end
 
 -- Function prints authors on question frame
@@ -33,7 +31,6 @@ function printAuthorsQuestionFrame(tab)
   local numContact = #contactTable
 
   -- In index order print authors
-	tex.print("\\textcolor{SecondColor}{\\small ")
 	for index, a in ipairs(tab) do
     -- Hyperlink title page and authors in question slide
 		tex.print("\\hypertarget{" .. index .. "}{" .. a .. "}")
@@ -41,10 +38,9 @@ function printAuthorsQuestionFrame(tab)
       tex.print(": \\href{" .. contactTable[index] .. "}{" .. contactTable[index] .. "}")
     end
 		if index ~= numAuthors then
-			tex.print(" \\\\ [-2mm] ")
+			tex.print(" \\\\ [2mm] ")
 		end
 	end
-	tex.print("}")
 end
 
 -- Function prints authors on specified frame 'frame'
