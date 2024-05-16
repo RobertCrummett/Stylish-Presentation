@@ -9,6 +9,7 @@
 % Preamble
 \RequirePackage{amsmath, amsfonts, amssymb} % Math
 \RequirePackage{array} % array stretch
+\RequirePackage{bm}
 \RequirePackage[backend=biber, style=authoryear-comp]{biblatex} % Bibliography, change style if you prefer
 \RequirePackage{fontspec} % Fonts --- If this fails to compile, try XeLaTeX or LuaTeX
 \RequirePackage{graphicx} % Figures
@@ -27,6 +28,8 @@
 % Presentation color options
 \definecolor{highlight}{HTML}{FFC000} % Highlight color
 \definecolor{cgemblue}{HTML}{90C5FB} % Light CGEM blue
+\definecolor{pres-blue}{HTML}{496EAF} % Darkish blue
+\definecolor{pres-red}{HTML}{BD3939} % Beautiful red
 
 \DeclareOption{dark}{
   \colorlet{ZeroColor}{black}
@@ -39,8 +42,8 @@
 \DeclareOption{light}{
   \colorlet{ZeroColor}{white}
   \colorlet{FirstColor}{black}
-  \colorlet{SecondColor}{blue}
-  \colorlet{ThirdColor}{red}
+  \colorlet{SecondColor}{pres-blue}
+  \colorlet{ThirdColor}{pres-red}
   \newcommand{\cgemLogoFile}{cgem-logo-light}
   \newcommand{\minesLogoFile}{mines-logo-light}
 }
