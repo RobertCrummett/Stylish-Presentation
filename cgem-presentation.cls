@@ -8,9 +8,9 @@
 
 % Preamble
 \RequirePackage{amsmath, amsfonts, amssymb} % Math
-\RequirePackage{array} % array strech
-\RequirePackage[backend=biber, style=authoryear-comp]{biblatex} % Bibliogrpahy, change style if you prefer
-\RequirePackage{fontspec} % Fonts --- If this fails to compile, use XeLaTeX or LuaTeX
+\RequirePackage{array} % array stretch
+\RequirePackage[backend=biber, style=authoryear-comp]{biblatex} % Bibliography, change style if you prefer
+\RequirePackage{fontspec} % Fonts --- If this fails to compile, try XeLaTeX or LuaTeX
 \RequirePackage{graphicx} % Figures
 \RequirePackage{hyperref} % Links
 \RequirePackage{longtable} % explanation of equations table
@@ -33,12 +33,16 @@
   \colorlet{FirstColor}{white}
   \colorlet{SecondColor}{cgemblue}
   \colorlet{ThirdColor}{cgemblue!40!red}
+  \newcommand{\cgemLogoFile}{cgem-logo-dark}
+  \newcommand{\minesLogoFile}{mines-logo-dark}
 }
 \DeclareOption{light}{
   \colorlet{ZeroColor}{white}
   \colorlet{FirstColor}{black}
   \colorlet{SecondColor}{blue}
   \colorlet{ThirdColor}{red}
+  \newcommand{\cgemLogoFile}{cgem-logo-light}
+  \newcommand{\minesLogoFile}{mines-logo-light}
 }
 \ProcessOptions\relax
 
@@ -233,3 +237,5 @@
     \end{longtable}
   \end{frame} 
 }
+
+%------------------------------------------
