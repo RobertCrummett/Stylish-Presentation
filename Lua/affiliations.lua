@@ -14,12 +14,12 @@ function printAffiliationTitleFrame(tab)
 	local numAffiliations = #tab
 
   -- Print the first affiliation big
-  tex.print("{ \\Large " .. tab[1] .. " } \\")
+  tex.print("{ \\Large " .. tab[1] .. " } \\\\")
   -- Fors all subsequent affiliations, print small below
   for index = 2, numAffiliations do
     tex.print("{ \\large " .. tab[index] .. " }"	)
     if index ~= numAffiliations then
-      tex.print(" \\ ")
+      tex.print(" \\\\ ")
     end
   end
 end
