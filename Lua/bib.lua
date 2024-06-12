@@ -29,7 +29,7 @@ end
 
 -- Function assembles bibliography
 function printBibResources(folder)
-	-- Geb all bib files in folder
+	-- Get all bib files in folder
 	local files = findBibFiles(folder)
 
 	-- For each file, add the file to the bibliography
