@@ -10,20 +10,19 @@
 %------------------------------------------
 %% Title
 % Affilations, Meeting information, etc
-\newcommand{\cgemTitle}{Center for Gravity, Electrical \\& Magnetic Studies (CGEM)}
-\newcommand{\csmTitle}{Department of Geophysics --- Colorado School of Mines}
-\newcommand{\meetingTitle}{Conference --- Meeting Name --- Location}
-\newcommand{\sessionTitle}{Session Information (if available)}
-\newcommand{\daytimeTitle}{Date --- Time}
-\newcommand{\cgemQuestion}{Center for Gravity, Electrical \\& Magnetic Studies}
-\newcommand{\csmQuestion}{Colorado School of Mines}
-
-% Title frame specifications
-\title{Do Not Read Title to Audience}
-\author{R. Nate Crummett*;Yaoguo Li}
-\affiliations{\cgemTitle;\csmTitle}{\cgemQuestion;\csmQuestion}
-\meeting{\meetingTitle;\sessionTitle;\daytimeTitle}
-\contactInfo{robert\\_crummett@mines.com}
+\newcommand{\PresentationTitle}{Do Not Read Title to Audience}
+\newcommand{\PresentationFirstAuthor}{R. Nate Crummett}
+\newcommand{\PresentationFirstAuthorEmail}{\href{robert\_crummett@mines.edu}{robert\_crummett@mines.edu}}
+\newcommand{\PresentationSecondAuthor}{Yaoguo Li}
+\newcommand{\PresentationAffiliationCGEM}{Center for Gravity, Electrical \& Magnetic Studies}
+\newcommand{\PresentationAffiliationGeophysics}{Department of Geophysics}
+\newcommand{\PresentationAffiliationMines}{Colorado School of Mines}
+\newcommand{\PresentationConferenceName}{Conference Name}
+\newcommand{\PresentationMeetingName}{Meeting Name}
+\newcommand{\PresentationLocation}{Location}
+\newcommand{\PresentationInformation}{Session Information (if available)}
+\newcommand{\PresentationDate}{Date}
+\newcommand{\PresentationTime}{Time}
 
 %------------------------------------------
 %% Presentation
@@ -31,33 +30,64 @@
 
   % Title slide
   \begin{frame}[plain]
-    % Mines logo
-    \begin{figure}
-      \begin{textblock*}{2.05cm}(0.06\paperwidth,0.37\paperheight)
-        \includegraphics[width=2.6cm]{\minesLogoFile}
-      \end{textblock*}
-    \end{figure}
-    % CGEM logo
-    \begin{figure}
-      \begin{textblock*}{2.85cm}(0.77\paperwidth,0.35\paperheight)
-        \includegraphics[width=2.85cm]{\cgemLogoFile}
-      \end{textblock*}
-    \end{figure}
-    % Title
-
+    % Title frame text
     \begin{center}
-      { \Huge \directlua{ cgem.title.print("title") }} \\ [1cm]
-      \textcolor{SecondColor}{
-        \LARGE
-        \directlua{ cgem.authors.print("title") }
-      } \\ [1.2cm]
-      \textit{
-        \textcolor{SecondColor}{ \directlua{ cgem.affiliations.print("title") } } \\ [2mm]
+      % Title 
+      \vspace{1cm}
+      \Huge
+      \PresentationTitle{}
+      \par
+      \vspace{1cm}
+      % Authors
+      { \color{SecondColor}
+        \huge
+        \PresentationFirstAuthor{}*
+        \par
+        \vspace{2mm}
+        \PresentationSecondAuthor{}
+        \par
+      }
+      \vspace{1.2cm}
+      % Affiliations
+      { \itshape
+        { \color{SecondColor}
+          \Large
+          \PresentationAffiliationCGEM{} (CGEM)
+          \par
+          \large
+          \PresentationAffiliationGeophysics{} --- %
+            \PresentationAffiliationMines{}
+          \par
+        }
+        \vspace{2mm}
         \normalsize
-        \directlua{ cgem.meetingInfo.print("title") } \\ [-5mm]
+        \PresentationConferenceName{} --- %
+          \PresentationMeetingName{} --- %
+          \PresentationLocation{}
+        \par
+        \PresentationInformation{}
+        \par
+        \PresentationDate{} --- %
+          \PresentationTime{}
+        \par
       }
     \end{center}
-    % \maketitle{1cm}{1.2cm}{2mm}{-5mm}
+
+    % Title page Mines logo
+    \begin{figure}
+      \begin{textblock*}{2.7cm}(0.06\paperwidth,0.34\paperheight)
+        \includegraphics[width=2.7cm]{\LogoFileMines}
+      \end{textblock*}
+    \end{figure}
+
+    % Title page CGEM logo
+    \begin{figure}
+      \vspace*{-11.09294pt}
+      \begin{textblock*}{2.85cm}(0.77\paperwidth,0.36\paperheight)
+        \includegraphics[width=2.4cm,keepaspectratio]{\LogoFileCGEM}
+      \end{textblock*}
+    \end{figure}
+
   \end{frame}
 
   % Adding outline slide
@@ -65,9 +95,11 @@
     \begin{enumerate}
       \item Often a Waste of Your Time
       \item Audiences Attention Span Wanes
-      \item Be Meaningful! \\[1mm]
+      \item Be Meaningful!
+      \vspace{2mm}
       \begin{enumerate}
-        \item Introduce after hook \\[2mm]
+        \item Introduce after hook
+        \vspace{2mm}
         \begin{enumerate}
           \item Follow through talk (?)
         \end{enumerate}
@@ -79,49 +111,60 @@
   \begin{frame}{All Slides Should Be Titled}
     \LARGE 
     Hello world!
+
   \end{frame}
 
   % Add equations to slides
   \begin{frame}{Adding Equations}
     \LARGE
-    Reduction To Pole (RTP) is a \textcolor{SecondColor}{rotation} \\[5mm]
+    Reduction To Pole (RTP) is a \textcolor{SecondColor}{rotation}
+    \vspace{5mm}
     
     % RTP operator
     \begin{equation*}
       \widetilde{\mathbf{T}} =
-        \textcolor{SecondColor}
-        {
+        { \color{SecondColor}
           \frac{(\hat{\mathit{u}} \cdot \vec{\mathit{k}})
           (\hat{\mathit{v}} \cdot \vec{\mathit{k}})}
           {\mathit{p}^2 + \mathit{q}^2}
         }
         \hspace{1mm}
         \widetilde{\mathbf{R}}
-      \logvar{u}{$\\hat{\\mathit{u}}$}{Inducing magnetic field direction unit vector}{}
-      \logvar{v}{$\\hat{\\mathit{v}}$}{Induced magnetization direction unit vector}{}
-      \logvar{k}{$\\vec{\\mathit{k}}$}{Gradient operator in wavenumber domain}{}
-      \logvar{p}{$\\mathit{p}$}{Wavenumber in X direction}{$\\text{m}^{-1}$}
-      \logvar{q}{$\\mathit{q}$}{Wavenumber in Y direction}{$\\text{m}^{-1}$}
-      \logvar{t}{$\\widetilde{\\mathbf{T}}$}{Observed total-field anomaly in the wavenumber domain}{nT}
-      \logvar{r}{$\\widetilde{\\mathbf{R}}$}{Reduction to Pole (RTP) in the wavenumber domain}{nT}
     \end{equation*}
    
     \vspace{1cm}
     Fields are \textcolor{SecondColor}{rotated} as if they were vertical (ie, Pole)
+
   \end{frame}
   
   % Adding citations
   \begin{frame}{Citations Managed by Bib\TeX}
     \LARGE
-    Everything gets hyperlinked! \cite{doi:10.1190/1.1444302} \\[2mm]
+    Everything gets hyperlinked! %
+    { \itshape
+      \small
+      \cite{doi:10.1190/1.1444302}
+    }
+    \vspace{2mm}
 
-    Just use the \texttt{cite} function \cite{doi:10.1190/image2022-3729385.1} \\[2mm]
+    Just use the \texttt{cite} function %
+    { \itshape
+      \small
+      \cite{doi:10.1190/image2022-3729385.1}
+    }
+    \vspace{2mm}
     
-    Bib\TeX\ handles everything else \\[1cm]
+    Bib\TeX{} handles everything else
+    \vspace{1cm}
     
     Do not like this format?
 
-    Try another citation style! \cite{doi:10.1190/geo2020-0729.1}
+    Try another citation style! %
+    { \itshape
+      \small
+      \cite{doi:10.1190/geo2020-0729.1}
+    }
+
   \end{frame}
 
   % Adding & citing figures
@@ -134,6 +177,7 @@
         \citefig{WEIHERMANN2021104682}
       \end{textblock*}
     \end{figure}
+
   \end{frame}
 
   % GMT figures, parameters in gmt.conf file to play with
@@ -154,7 +198,8 @@
         \item FONT\_TITLE
         \item FONT\_ANNOT
         \item FONT\_LABEL
-        \item -\hspace{0.1mm}-PARAM //
+        \item -\hspace{0.1mm}-PARAM
+
           (override *.conf)
       \end{enumerate}
     \end{textblock*}
@@ -177,23 +222,62 @@
 
   % Question slide
   \begin{frame}[plain]
+    % Question slide text
+    \begin{center}
+      % Question slide affilitations
+      { \color{SecondColor}
+        \vspace{1mm}
+        \small
+        \PresentationAffiliationMines{}
+        \par
+        \vspace{1mm}
+        \Large
+        \PresentationAffiliationCGEM{}
+        \par
+      }
+      \vspace{-1mm}
+      \HorizontalBar{FirstColor}
+      \par
+      \vspace{1.5cm}
+      % Thank the audience and make certain they know the talk is finished
+      \LARGE
+      Thank You
+
+      Questions?
+      \par
+      \vspace{1.95cm}
+      \HorizontalBar{FirstColor}
+      \par
+      \vspace{-8mm}
+      % Author contact information
+      { \color{SecondColor}
+        \normalsize
+        \PresentationFirstAuthor{}*: %
+          \PresentationFirstAuthorEmail{}
+        \par
+        \PresentationSecondAuthor{}
+        \par
+      }
+    \end{center}
+
     % Mines logo
     \begin{figure}
-      \begin{textblock*}{1cm}(0.05\paperwidth,0.025\paperheight)
-        \includegraphics[width=1.25cm]{\minesLogoFile}
+      \begin{textblock*}{1.5cm}(0.04\paperwidth,0.01\paperheight)
+        \includegraphics[width=1.5cm]{\LogoFileMines}
       \end{textblock*}
     \end{figure}
+
     % CGEM logo
     \begin{figure}
-      \begin{textblock*}{1cm}(0.867\paperwidth,0.02\paperheight)
-        \includegraphics[width=1.35cm]{\cgemLogoFile}
+      \vspace*{-19.00015pt}
+      \begin{textblock*}{1.35cm}(0.867\paperwidth,0.02\paperheight)
+        \includegraphics[width=1.35cm]{\LogoFileCGEM}
       \end{textblock*}
     \end{figure}
-    % Question slide text
-    \makequestion{-8mm}{-2mm}{1.75cm}{1.82cm}{1mm}
+
   \end{frame}
 
+  % All citations listed here
   \BibliographyFrame
-  \VariableFrame
-
+  
 \end{document}

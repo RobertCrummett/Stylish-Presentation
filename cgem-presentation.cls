@@ -12,7 +12,6 @@
 \RequirePackage{bm}
 \RequirePackage[backend=biber, style=authoryear-comp]{biblatex} % Bibliography, change style if you prefer
 \RequirePackage{fontspec} % Fonts --- If this fails to compile, try XeLaTeX or LuaTeX
-\RequirePackage{graphicx} % Figures
 \RequirePackage{hyperref} % Links
 \RequirePackage{longtable} % explanation of equations table
 \RequirePackage[absolute,overlay]{textpos} % Figure placement
@@ -20,7 +19,7 @@
 
 %-----------------------------------------
 % Linking CGEM Lua package
-\directlua{ cgem = require("cgem-presentation") } 
+\directlua{ cgembib = require("bib") } 
 
 %-----------------------------------------
 %% Global TeX Settings and Options Processing
@@ -36,16 +35,16 @@
   \colorlet{FirstColor}{white}
   \colorlet{SecondColor}{cgemblue}
   \colorlet{ThirdColor}{cgemblue!40!red}
-  \newcommand{\cgemLogoFile}{cgem-logo-dark}
-  \newcommand{\minesLogoFile}{mines-logo-dark}
+  \newcommand{\LogoFileCGEM}{cgem-logo-dark}
+  \newcommand{\LogoFileMines}{mines-logo-dark}
 }
 \DeclareOption{light}{
   \colorlet{ZeroColor}{white}
   \colorlet{FirstColor}{black}
   \colorlet{SecondColor}{pres-blue}
   \colorlet{ThirdColor}{pres-red}
-  \newcommand{\cgemLogoFile}{cgem-logo-light}
-  \newcommand{\minesLogoFile}{mines-logo-light}
+  \newcommand{\LogoFileCGEM}{cgem-logo-light}
+  \newcommand{\LogoFileMines}{mines-logo-light}
 }
 \ProcessOptions\relax
 
@@ -68,39 +67,13 @@
 \setbeamertemplate{navigation symbols}{}
 
 % Page numbering
-\setbeamertemplate{footline}
-{
+\setbeamertemplate{footline}{
   \begin{flushright}
     \textcolor{SecondColor}{\large \insertframenumber}
     \hspace{1mm}
     \vspace{-1mm}
   \end{flushright}
 }
-
-%------------------------------------------
-%% Title page 
-
-% Title
-\renewcommand{\title}[1]{ \directlua{ cgem.title.set("title", "#1") } }
-
-% Slide authors
-\renewcommand{\author}[1]{
-  \directlua{ cgem.authors.set("title", "#1") }
-  \directlua{ cgem.authors.set("question", "#1") }
-}
-
-% Affiliations line
-\newcommand{\affiliations}[2]
-{
-  \directlua{ cgem.affiliations.set("title", "#1") }
-  \directlua{ cgem.affiliations.set("question", "#2") }
-}
-
-% Meeting information, date, session #, etc
-\newcommand{\meeting}[1]{\directlua{ cgem.meetingInfo.set("title", "#1") } }
-
-% Autho contact information
-\newcommand{\contactInfo}[1]{ \directlua{ cgem.contact.set("#1") } }
 
 %------------------------------------------
 %% Enumeration / Itemize  / List Settings, ie, Bullet Point Lists
@@ -134,31 +107,11 @@
 % Print a horizontal while bar across the text width of frame
 \newcommand{\HorizontalBar}[1]{ \textcolor{#1}{\noindent \makebox[\linewidth]{\rule{\textwidth}{0.7pt}}} }
 
-\newcommand{\makequestion}[5]
-{
-  \begin{center}
-    \vspace{#1} 
-    \textcolor{SecondColor}{
-      \directlua{ cgem.affiliations.print("question") }
-    } \\ [#2]
-    \HorizontalBar{FirstColor} \\ [#3]
-    \LARGE
-    \textcolor{SecondColor}{
-      Thank You \\
-      Questions?
-    } \\ [#4]
-    \HorizontalBar{FirstColor} \\ [#5]
-    \color{SecondColor}
-    \small
-    \directlua{ cgem.authors.print("question") }
-  \end{center}
-}
-
 %-------------------------------------------
 %% Bibliography Style
 
 % Linking bibliography folder
-\newcommand{\bibliographypath}[1]{ \directlua{ bib.make("#1") } }
+\newcommand{\bibliographypath}[1]{ \directlua{ cgembib.make("#1") } }
 
 % Biblography colors
 \setbeamercolor*{bibliography entry title}{fg=FirstColor}
@@ -174,17 +127,13 @@
 %% Citations
 
 % Inline citation settings
-\renewcommand*{\citesetup}
-{
-  \itshape
+\renewcommand*{\citesetup}{
   \color{ThirdColor}
-  \small
   \biburlsetup
 }
 
 % Figure citation beneath bottom right hand corner of image, integrates with BibTeX
-\newcommand{\citefig}[1]
-{
+\newcommand{\citefig}[1]{
   \begin{flushright}
     \vspace{-4mm}
     \cite{#1}
@@ -197,29 +146,6 @@
   \begin{frame}[allowframebreaks, plain]{References}
     \printbibliography
   \end{frame}
-}
-
-%--------------------------------------------
-%% Variables & Explanation of Equations
-
-% Log variables
-\newcommand{\logvar}[4]{ \directlua{ cgem.variable.log("#1", "#2", "#3", "#4") } }
-
-% Variable table frame
-\newcolumntype{x}[1]{>{\centering\arraybackslash\hspace{0pt}}p{#1}}
-\newcommand{\VariableFrame}
-{
-  \begin{frame}[allowframebreaks, plain]
-    \LARGE
-    \textcolor{SecondColor}{Explanation of Equations} \\
-    \vspace{-1mm}
-    \Large
-    \renewcommand*{\arraystretch}{1.2}
-    \begin{longtable}{x{1cm}|x{10cm}|x{2cm}}
-      \hline && \\[-5mm]
-      \directlua{ cgem.variable.print() }
-    \end{longtable}
-  \end{frame} 
 }
 
 %------------------------------------------
