@@ -30,6 +30,7 @@
 \definecolor{pres-blue}{HTML}{496EAF} % Darkish blue
 \definecolor{pres-red}{HTML}{BD3939} % Beautiful red
 
+% Parse the optional color argument
 \DeclareOption{dark}{
   \colorlet{ZeroColor}{black}
   \colorlet{FirstColor}{white}
@@ -141,9 +142,8 @@
 }
 
 % Bibliography frame
-\newcommand{\BibliographyFrame}
-{
-  \begin{frame}[allowframebreaks, plain]{References}
+\newcommand{\BibliographyFrame}{
+  \begin{frame}[allowframebreaks,plain]{References}
     \printbibliography
   \end{frame}
 }
