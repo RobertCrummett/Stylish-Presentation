@@ -1,4 +1,4 @@
-\documentclass[light]{cgem-presentation}
+\documentclass[dark]{cgem-presentation}
 
 %------------------------------------------
 % Link to figures directory
@@ -44,7 +44,20 @@
       \end{textblock*}
     \end{figure}
     % Title
-    \maketitle{1cm}{1.2cm}{2mm}{-5mm}
+
+    \begin{center}
+      { \Huge \directlua{ cgem.title.print("title") }} \\ [1cm]
+      \textcolor{SecondColor}{
+        \LARGE
+        \directlua{ cgem.authors.print("title") }
+      } \\ [1.2cm]
+      \textit{
+        \textcolor{SecondColor}{ \directlua{ cgem.affiliations.print("title") } } \\ [2mm]
+        \normalsize
+        \directlua{ cgem.meetingInfo.print("title") } \\ [-5mm]
+      }
+    \end{center}
+    % \maketitle{1cm}{1.2cm}{2mm}{-5mm}
   \end{frame}
 
   % Adding outline slide

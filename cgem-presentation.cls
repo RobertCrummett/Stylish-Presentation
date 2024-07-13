@@ -102,25 +102,6 @@
 % Autho contact information
 \newcommand{\contactInfo}[1]{ \directlua{ cgem.contact.set("#1") } }
 
-% Create new title, arguments control spacing of different sections on frame
-% if you desire th change text size, color, linespacing etc, you will need to
-% track them down in the Lua directory!
-\renewcommand{\maketitle}[4]
-{
-  \begin{center}
-    { \Huge \directlua{ cgem.title.print("title") }} \\ [#1]
-    \textcolor{SecondColor}{
-      \LARGE
-      \directlua{ cgem.authors.print("title") }
-    } \\ [#2]
-    \textit{
-      \textcolor{SecondColor}{ \directlua{ cgem.affiliations.print("title") } } \\ [#3]
-      \normalsize
-      \directlua{ cgem.meetingInfo.print("title") } \\ [#4]
-    }
-  \end{center}
-}
-
 %------------------------------------------
 %% Enumeration / Itemize  / List Settings, ie, Bullet Point Lists
 
