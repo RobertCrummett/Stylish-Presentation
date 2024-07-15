@@ -65,7 +65,7 @@
 \setbeamercolor{normal text}{fg = FirstColor}\usebeamercolor*{normal text}
 
 % Turn off Beamer navigation buttons
-\setbeamertemplate{navigation symbols}{}
+\beamertemplatenavigationsymbolsempty
 
 % Page numbering
 \setbeamertemplate{footline}{
