@@ -1,14 +1,21 @@
 # Make CGEM poster template project
-.PHONY: all pdf documentation
+source = presentation-template.tex
+target = preesntation-template.pdf
 
-all: pdf documentation
+all: pdf
 
 documentation: Doc/example.png
 
-pdf: presentation-template.pdf
+pdf: $(target)
 
-Doc/example.png: presentation-template.pdf
+Doc/example.png: $(target)
 	magick -density 300 $< -quality 90 $@
 
-presentation-template.pdf: presentation-template.tex cgem-presentation.cls bib.lua
+$(target): $(source) cgem-presentation.cls bib.lua
 	latexmk -pdflua $<
+
+clean:
+	rm -f Doc/*
+	latexmk -C $(target)
+
+.PHONY: all pdf documentation clean
