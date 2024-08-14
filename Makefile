@@ -23,4 +23,4 @@ purge: clean
 	rm -f Figure/*
 	rm README.markdown
 	
-.PHONY: all pdf documentation clean
+.PHONY: all pdf documentation clean purge
