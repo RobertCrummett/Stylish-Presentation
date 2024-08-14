@@ -1,6 +1,6 @@
 # Make CGEM poster template project
-source = presentation-template.tex
-target = preesntation-template.pdf
+source = presentation.tex
+target = presentation.pdf
 
 all: pdf
 
@@ -16,6 +16,11 @@ $(target): $(source) cgem-presentation.cls bib.lua
 
 clean:
 	rm -f Doc/*
-	latexmk -C $(target)
+	latexmk -C -f $(target)
 
+purge: clean
+	rm -f Bib/*
+	rm -f Figure/*
+	rm README.markdown
+	
 .PHONY: all pdf documentation clean
