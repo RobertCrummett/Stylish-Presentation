@@ -2,9 +2,9 @@
 source = presentation.tex
 target = presentation.pdf
 
-all: pdf
-
 pdf: $(target)
+
+all: pdf
 
 doc: $(target)
 	magick -density 300 $< -quality 90 example.png
@@ -21,4 +21,4 @@ purge: clean
 	rm -f Figure/*
 	rm README.markdown
 	
-.PHONY: all pdf documentation clean purge
+.PHONY: all pdf doc clean purge
