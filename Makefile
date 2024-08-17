@@ -4,12 +4,10 @@ target = presentation.pdf
 
 all: pdf
 
-documentation: Doc/example.png
-
 pdf: $(target)
 
-Doc/example.png: $(target)
-	magick -density 300 $< -quality 90 $@
+doc: $(target)
+	magick -density 300 $< -quality 90 example.png
 
 $(target): $(source) cgem-presentation.cls bib.lua
 	latexmk -pdflua $<
