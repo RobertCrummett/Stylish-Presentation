@@ -4,7 +4,7 @@ target = presentation.pdf
 
 pdf: $(target)
 
-all: pdf
+all: pdf doc
 
 doc: $(target)
 	magick -density 300 $< -quality 90 example.png
@@ -13,12 +13,11 @@ $(target): $(source) cgem-presentation.cls bib.lua
 	latexmk -pdflua $<
 
 clean:
-	rm -f Doc/*
 	latexmk -C -f $(target)
 
 purge: clean
 	rm -f Bib/*
 	rm -f Figure/*
-	rm README.markdown
+	rm -f README.markdown
 	
 .PHONY: all pdf doc clean purge
