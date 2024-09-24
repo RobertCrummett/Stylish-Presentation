@@ -149,3 +149,27 @@
 }
 
 %------------------------------------------
+% Math blocks
+\AtBeginEnvironment{theorem}{
+  \setbeamerfont{block title}{size=\LARGE, series=\bfseries}
+  \setbeamerfont{block body}{size=\Large, series=\normalfont}
+  \setbeamercolor{block title}{fg=SecondColor}
+  \setbeamercolor{block body}{fg=FirstColor}
+}
+\setbeamertemplate{theorems}[numbered]
+
+\AtBeginEnvironment{proof}{
+  \setbeamerfont{block title}{size=\LARGE, series=\bfseries}
+  \setbeamerfont{block body}{size=\Large, series=\normalfont}
+  \setbeamercolor{block title}{fg=SecondColor}
+  \setbeamercolor{block body}{fg=FirstColor}
+}
+\setbeamertemplate{proofs}[numbered]
+\setbeamertemplate{qed symbol}{\color{FirstColor} \blacksquare}
+
+\AtBeginEnvironment{definition}{
+  \setbeamerfont{block title}{size=\LARGE, series=\bfseries}
+  \setbeamerfont{block body}{size=\Large, series=\normalfont}
+  \setbeamercolor{block title}{fg=SecondColor}
+  \setbeamercolor{block body}{fg=FirstColor}
+}
