@@ -14,6 +14,7 @@
 \RequirePackage{fontspec} % Fonts --- If this fails to compile, try XeLaTeX or LuaTeX
 \RequirePackage{hyperref} % Links
 \RequirePackage{longtable} % explanation of equations table
+\RequirePackage{newtxmath} % prettier math
 \RequirePackage[absolute,overlay]{textpos} % Figure placement
 \RequirePackage{xcolor} % Colors
 
@@ -80,19 +81,19 @@
 %% Enumeration / Itemize  / List Settings, ie, Bullet Point Lists
 
 % Base level
-\setbeamertemplate{enumerate item}{\LARGE \color{SecondColor} \textbullet}
+\setbeamertemplate{itemize/enumerate item}{\LARGE \color{FirstColor} \textbullet}
 \setbeamerfont*{itemize/enumerate body}{size=\LARGE}
-\setbeamercolor{itemize/enumerate body}{fg=SecondColor}
+\setbeamercolor{itemize/enumerate body}{fg=FirstColor}
 
 % First Level
-\setbeamertemplate{enumerate subitem}{\Large \color{FirstColor} --}
+\setbeamertemplate{itemize/enumerate subitem}{\Large \color{FirstColor} --}
 \setbeamerfont*{itemize/enumerate subbody}{size=\Large}
 \setbeamercolor{itemize/enumerate subbody}{fg=FirstColor}
 
 % Second Level -- only use in emergencies!!
-\setbeamertemplate{enumerate subsubitem}{\large \color{SecondColor} \textbullet}
+\setbeamertemplate{itemize/enumerate subsubitem}{\large \color{FirstColor} \textbullet}
 \setbeamerfont*{itemize/enumerate subsubbody}{size=\large}
-\setbeamercolor{itemize/enumerate subsubbody}{fg=SecondColor}
+\setbeamercolor{itemize/enumerate subsubbody}{fg=FirstColor}
 
 %------------------------------------------
 %% Frame title format
